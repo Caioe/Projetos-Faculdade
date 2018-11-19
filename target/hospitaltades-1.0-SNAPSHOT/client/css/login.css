@@ -1,0 +1,100 @@
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    padding:0px; 
+    font-family: 'Kodchasan', sans-serif;
+    background-color: #f1f1f1;  
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+.login-content {
+    display: flex;
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+}
+
+/* SIDEBAR CSS : BEGIN */
+
+.login-container {
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    min-width: 200px;
+    overflow-x: hidden;
+    margin: auto;
+    padding: 280px 0px 0px 0px;
+    text-align: center;
+    align-items: center;
+    top: 0;
+    z-index: 1;
+    height: 100%;
+    border-right: 1px solid #e0e0e0;
+    width: 35%;
+}
+
+.form-inline {
+    display: flex;
+    flex-direction: column;
+
+}
+
+label {
+    font-weight: 400;
+    font-size: 1.2rem;
+    text-align: left;
+    color: #696969;
+}
+
+input {
+    font-size: 1rem;
+    color: #696969;
+    padding: 4px;
+    height: 25px;
+    border: 1px solid #005488;
+    border-radius: 5px;
+}
+
+.logo-container {
+    display: flex;
+    background-color: #005488;
+    overflow-x: hidden;
+    margin: 0;
+    align-items: center;
+    width: 65%;
+    text-align: center;
+    background-image: linear-gradient(to bottom right, #006EA2, #4c99bd);
+}
+
+.main-title {
+    font-size: 3em;
+    color: #ffffff;
+    font-weight: 600;
+    padding: 12px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+
+.btn-primary {
+    background-color: #006EA2;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    font-weight: 600;
+    font-size: 1.2em;
+}
+
+.btn-primary:hover {
+    background-color: #006195;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.btn-primary:active {
+    background-color: #005488;
+    color: #FFFFFF;
+}
