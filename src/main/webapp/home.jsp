@@ -51,11 +51,21 @@
                     <c:param name="command" value="READ" />
                 </c:url>
 
+                <c:url var="createAppointment" value="ConsultaControllerServlet">
+                    <c:param name="command" value="CREATE APPOINTMENT" />
+                </c:url>
+
                 <c:url var="homeLink" value="home.jsp" />
 
 
                 <div id="menu-container">
                     <hr style="margin: 8px;">
+
+                    <c:if test="${usuarioCargo == 'Atendente'}">
+                        <div class="menu-item"><i class="fas fa-stethoscope" style="padding-right: 6px; color: #006EA2; font-size: 1.3rem;"></i>
+                            <a href="${createAppointment}" style="text-decoration: none; color: #4BB543; font-weight: bolder">Marcar Consulta</a>
+                        </div>
+                    </c:if>
 
                     <div class="menu-item"><i class="fas fa-user-injured" style="padding-right: 6px; color: #006EA2; font-size: 1.3rem;"></i>
                         <a href="${patientsLink}" style="text-decoration: none; color: inherit;">Pacientes</a>

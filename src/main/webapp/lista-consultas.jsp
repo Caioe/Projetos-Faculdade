@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <%-- 
     Document   : lista-pacientes
     Created on : 27/09/2018, 21:02:09
@@ -10,12 +9,13 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Ínicio</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Médicos</title>
 
-        <link type="text/css" rel="stylesheet" href="client/css/inicial.css">
+        <link type="text/css" rel="stylesheet" href="client/css/lista-pacientes.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
         <link href="https://fonts.googleapis.com/css?family=Kodchasan:400,600" rel="stylesheet">
+
 
     </head>
     <body>
@@ -51,21 +51,11 @@
                     <c:param name="command" value="READ" />
                 </c:url>
 
-                <c:url var="createAppointment" value="ConsultaControllerServlet">
-                    <c:param name="command" value="CREATE APPOINTMENT" />
-                </c:url>
-
                 <c:url var="homeLink" value="home.jsp" />
 
 
                 <div id="menu-container">
                     <hr style="margin: 8px;">
-
-                    <c:if test="${usuarioCargo == 'Atendente'}">
-                        <div class="menu-item"><i class="fas fa-stethoscope" style="padding-right: 6px; color: #006EA2; font-size: 1.3rem;"></i>
-                            <a href="${createAppointment}" style="text-decoration: none; color: #4BB543; font-weight: bolder">Marcar Consulta</a>
-                        </div>
-                    </c:if>
 
                     <div class="menu-item"><i class="fas fa-user-injured" style="padding-right: 6px; color: #006EA2; font-size: 1.3rem;"></i>
                         <a href="${patientsLink}" style="text-decoration: none; color: inherit;">Pacientes</a>
@@ -106,7 +96,6 @@
                             <button type="submit" name="logout" class="logout-buton"><i class="fas fa-sign-out-alt" style="padding-right: 12px; color: #fff;"></i>Sair</button>
                         </form>
                     </div>
-
                 </div>
             </div>
             <div id="content-wrapper">
@@ -116,13 +105,58 @@
                     <div id="row"></div>
                 </div>
                 <div id="content-container">
-                    <div class="welcome-message">
-                        <i class="fas fa-user-alt" style="font-size: 1.5em; text-align: center;"></i>
-                        Bem-vindo, ${usuarioNome} :)
+                    <div class="add-patient">
+                        <form name="novaconsultaform" action="ConsultaControllerServlet" method="POST">
+                            <input type="hidden" name="command" value="CREATE APPOINTMENT">
+                            <button name="nova consulta" class="btn-primary">Nova Consulta</button>
+                        </form>
                     </div>
+                    <div class="table-session">
+                        <table class="tades-table" cellspacing="0">
+                            <thead class="tades-thead">
+                                <tr style="background-color: #006EA2;">
+                                    <th scope="col">Paciente</th>
+                                    <th scope="col">Motivo</th>
+                                    <th scope="col">Medico</th>
+                                    <th scope="col">Atendente</th>
+                                    <th scope="col">#</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <c:forEach var="consulta" items="${CONSULTAS}">
 
+                                    <c:url var="link" value="ConsultaControllerServlet">
+                                        <c:param name="command" value="LOAD APPOINTMENT" />
+                                        <c:param name="consultaId" value="${consulta.idConsulta}" />
+                                    </c:url>
+
+                                    <c:url var="deleteLink" value="ConsultaControllerServlet">
+                                        <c:param name="command" value="DELETE APPOINTMENT" />
+                                        <c:param name="consultaId" value="${consulta.idConsulta}" />
+                                    </c:url>
+
+                                    <tr>
+                                        <th scope="row">${consulta.nomePaciente}</th>
+                                        <td scope="row">${consulta.motivo}</td>
+                                        <td scope="row">${consulta.nomeMedico}</td>
+                                        <td scope="row">${consulta.usuarioNome}</td>
+                                        <td scope="row">
+                                            <a href="${link}">Atualizar</a>
+                                            |
+                                            <a href="${deleteLink}" onclick="if (!(confirm('Você tem certeza que deseja excluir este funcionário?')))
+                                                        return false">Deletar</a>
+                                        </td>
+                                    </tr>    
+                                </c:forEach>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
     </body>
 </html>
+
+
+
+

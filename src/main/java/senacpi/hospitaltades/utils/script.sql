@@ -57,4 +57,18 @@ CREATE TABLE `remedio` (
     PRIMARY KEY (`idRemedio`)
 );
 
+CREATE TABLE `consultas` (
+	`idConsulta` int(11) NOT NULL AUTO_INCREMENT,
+    `motivo` varchar(45) DEFAULT NULL,
+    `idPaciente` int(11) DEFAULT NULL,
+    `nomePaciente` varchar(11) DEFAULT NULL,
+    `idMedico` int(11) DEFAULT NULL,
+    `nomeMedico` varchar(45) DEFAULT NULL,
+    `usuarioNome` varChar(45) DEFAULT NULL,
+    `ativo` boolean,
+    PRIMARY KEY(`idConsulta`),
+    FOREIGN KEY(`idPaciente`) REFERENCES paciente(id),
+    FOREIGN KEY(`idMedico`) REFERENCES medico(idMedico)
+);
+
 
