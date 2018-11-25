@@ -211,7 +211,7 @@ public class UsuarioControllerServlet extends HttpServlet {
         // Adicionar esse PACIENTE no banco de Dados
         usuarioDbUtil.addUser(usuario);
 
-        if (usuario.getCargo().equals("Médico")) {
+        if (usuario.getCargo().equals("Medico")) {
             int funcId = Integer.parseInt(request.getParameter("theFuncId"));
             usuarioDbUtil.updateUserLogin(funcId, cargo);
             response.sendRedirect(request.getContextPath() + "/MedicoControllerServlet?command=READ");

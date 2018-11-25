@@ -184,7 +184,7 @@ public class UsuarioDbUtil {
         Connection myConn = null;
         PreparedStatement myStmt = null;
 
-        if (cargo.equals("Médico")) {
+        if (cargo.equals("Medico")) {
 
             try {
                 myConn = dataSource.getConnection();

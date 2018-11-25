@@ -137,8 +137,9 @@
                                     </c:url>
 
                                     <c:url var="createLogin" value="usuario-cadastro.jsp">
-                                        <c:param name="medicoId" value="${medico.idMedico}" />
+                                        <c:param name="funcId" value="${medico.idMedico}" />
                                         <c:param name="nomeFuncionario" value="${medico.nome}" />
+                                        <c:param name="cargo" value="Medico" />
                                     </c:url>
 
 

@@ -111,8 +111,8 @@
                         <form action="UsuarioControllerServlet" method="POST">
 
                             <input type="hidden" name="command" value="CREATE USER" />
-                            <input type="hidden" name="cargo" value="Médico" />
-                            <input type="hidden" name="theFuncId" value="<%= request.getParameter("medicoId")%>" />
+                            <input type="hidden" name="cargo" value="<%= request.getParameter("cargo")%>" />
+                            <input type="hidden" name="theFuncId" value="<%= request.getParameter("funcId")%>" />
 
                             <div class="form-row">
                                 <div class="form-group col-md-6">
@@ -121,7 +121,7 @@
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="nome">Nome</label>
-                                    <input type="text" class="form-control" name="nome" value="<%= request.getParameter("nomeMedico")%>" placeholder="Nome do usuário" />
+                                    <input type="text" class="form-control" name="nome" value="<%= request.getParameter("nomeFuncionario")%>" placeholder="Nome do usuário" />
                                 </div>
                             </div>
 

@@ -78,7 +78,7 @@ public class MedicoDbUtil {
             // Criando um SQL para inserir no banco
             String sql = "insert into medico"
                     + "(nome, sobrenome, cpf, sexo, crm, ativo)"
-                    + "values (?, ?, ?, ?, ?)";
+                    + "values (?, ?, ?, ?, ?, ?)";
 
             myStmt = myConn.prepareStatement(sql);
 

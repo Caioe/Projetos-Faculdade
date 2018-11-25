@@ -139,6 +139,7 @@
                                     <c:url var="createLogin" value="usuario-cadastro.jsp">
                                         <c:param name="funcId" value="${atendente.idAtendente}" />
                                         <c:param name="nomeFuncionario" value="${atendente.nome}" />
+                                        <c:param name="cargo" value="Atendente" />
                                     </c:url>
 
 
