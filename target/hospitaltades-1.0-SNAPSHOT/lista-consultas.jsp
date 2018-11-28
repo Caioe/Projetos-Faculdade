@@ -107,7 +107,7 @@
                 <div id="content-container">
                     <div class="add-patient">
                         <form name="novaconsultaform" action="ConsultaControllerServlet" method="POST">
-                            <input type="hidden" name="command" value="CREATE APPOINTMENT">
+                            <input type="hidden" name="command" value="">
                             <button name="nova consulta" class="btn-primary">Nova Consulta</button>
                         </form>
                     </div>

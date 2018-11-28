@@ -105,6 +105,13 @@ public class ConsultaControllerServlet extends HttpServlet {
             throws ServletException, IOException {
 
         try {
+            List<Paciente> pacientes = pacienteDbUtil.getPacientes();
+
+            request.setAttribute("PACIENTES", pacientes);
+
+            List<Medico> medicos = medicoDbUtil.getMedicos();
+
+            request.setAttribute("MEDICOS", medicos);
 
             // Ler o a varável "command"
             String theCommand = request.getParameter("command");
@@ -120,6 +127,12 @@ public class ConsultaControllerServlet extends HttpServlet {
                 case "UPDATE APPOINTMENT":
                     editarConsulta(request, response);
                     break;
+                default:
+                    // Enviar este PACIENTE para lista de Pacientes (listarPacientes)
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("consulta-cadastro.jsp");
+
+                    // Executando o dispatcher
+                    dispatcher.forward(request, response);
             }
 
         } catch (Exception e) {
@@ -131,14 +144,6 @@ public class ConsultaControllerServlet extends HttpServlet {
     private void cadastrarConsulta(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
 
-        List<Paciente> pacientes = pacienteDbUtil.getPacientes();
-
-        request.setAttribute("PACIENTES", pacientes);
-
-        List<Medico> medicos = medicoDbUtil.getMedicos();
-
-        request.setAttribute("MEDICOS", medicos);
-        
         int idPaciente = 0;
         int idMedico = 0;
         String nomePaciente = null;
@@ -148,21 +153,22 @@ public class ConsultaControllerServlet extends HttpServlet {
         String motivo = request.getParameter("motivo");
         String idPacienteString = request.getParameter("idPaciente");
         String idMedicoString = request.getParameter("idMedico");
+
         if (idPacienteString != null) {
             idPaciente = Integer.parseInt(idPacienteString);
         }
-        
+
         if (idMedicoString != null) {
             idMedico = Integer.parseInt(idMedicoString);
         }
-        
+
         if (idPaciente != 0) {
-            Paciente paciente = pacienteDbUtil.getPaciente("idPaciente");
+            Paciente paciente = pacienteDbUtil.getPaciente(idPacienteString);
             nomePaciente = paciente.getNome();
         }
-        
+
         if (idMedico != 0) {
-            Medico medico = medicoDbUtil.getMedico("idMedico");
+            Medico medico = medicoDbUtil.getMedico(idMedicoString);
             nomeMedico = medico.getNome();
         }
 
@@ -172,10 +178,8 @@ public class ConsultaControllerServlet extends HttpServlet {
         // Criar um objeto do PACIENTE
         Consulta consulta = new Consulta(motivo, idPaciente, nomePaciente, idMedico, nomeMedico, usuarioNome, ativo);
 
-        // Adicionar esse PACIENTE no banco de Dados
         consultaDbUtil.addAppointment(consulta);
 
-        // Enviar este PACIENTE para lista de Pacientes (listarPacientes)
         response.sendRedirect(request.getContextPath() + "/ConsultaControllerServlet?command=READ");
     }
 

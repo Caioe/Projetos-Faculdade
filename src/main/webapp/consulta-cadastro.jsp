@@ -122,9 +122,6 @@
 
                             <input type="hidden" name="command" value="CREATE APPOINTMENT" />
                             <input type="hidden" name="usuarioNome" value="${usuarioNome}" />
-                            
-                            <h1>${PACIENTES}</h1>
-                            <h1>${MEDICOS}</h1>
 
                             <div class="form-row">
                                 <div class="form-group col-md-6">
@@ -150,7 +147,7 @@
                                     <label for="idMedico">Médico</label>
                                     <select class="form-control-select" name="idMedico">
                                         <c:forEach var="medico" items="${MEDICOS}">
-                                            <option value="${medico.id}">${medico.nome}</option>
+                                            <option value="${medico.idMedico}">${medico.nome}</option>
                                         </c:forEach>
                                     </select>
                                 </div>
