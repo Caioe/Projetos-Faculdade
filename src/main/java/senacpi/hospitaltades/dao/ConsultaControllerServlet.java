@@ -123,7 +123,7 @@ public class ConsultaControllerServlet extends HttpServlet {
                 case "CREATE APPOINTMENT":
                     cadastrarConsulta(request, response);
                     break;
-
+                    //AEEEEE
                 case "UPDATE APPOINTMENT":
                     editarConsulta(request, response);
                     break;

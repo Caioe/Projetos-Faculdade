@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context antiResourceLocking="true" path="/hospitaltades">
-  <Resource auth="Container" driverClassName="com.mysql.jdbc.Driver" maxActive="20" maxIdle="5" maxWait="10000" name="jdbc/hospital_tades" password="" type="javax.sql.DataSource" url="jdbc:mysql://localhost:3306/hospital_tades" username="root"/>
+  <Resource auth="Container" driverClassName="com.mysql.jdbc.Driver" maxActive="20" maxIdle="5" maxWait="10000" name="jdbc/hospital_tades" password="123456" type="javax.sql.DataSource" url="jdbc:mysql://localhost:3306/hospital_tades" username="root"/>
 </Context>
