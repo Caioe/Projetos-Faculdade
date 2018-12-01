@@ -59,10 +59,15 @@
 
                 <div id="menu-container">
                     <hr style="margin: 8px;">
-
                     <c:if test="${usuarioCargo == 'Atendente'}">
                         <div class="menu-item"><i class="fas fa-stethoscope" style="padding-right: 6px; color: #006EA2; font-size: 1.3rem;"></i>
                             <a href="${createAppointment}" style="text-decoration: none; color: #4BB543; font-weight: bolder">Marcar Consulta</a>
+                        </div>
+                    </c:if>
+
+                    <c:if test="${usuarioCargo == 'Medico'}">
+                        <div class="menu-item"><i class="fas fa-stethoscope" style="padding-right: 6px; color: #006EA2; font-size: 1.3rem;"></i>
+                            <a href="${createAppointment}" style="text-decoration: none; color: #4BB543; font-weight: bolder">Consultas</a>
                         </div>
                     </c:if>
 
@@ -70,7 +75,7 @@
                         <a href="${patientsLink}" style="text-decoration: none; color: inherit;">Pacientes</a>
                     </div>
 
-                    <c:if test="${usuarioCargo == 'Médico' || usuarioCargo == 'Admin'}">
+                    <c:if test="${usuarioCargo == 'Medico' || usuarioCargo == 'Admin'}">
                         <div class="menu-item"><i class="fas fa-stethoscope" style="padding-right: 6px; color: #006EA2; font-size: 1.3rem;"></i>
                             <a href="${medicsLink}" style="text-decoration: none; color: inherit;">Médicos</a>
                         </div>
@@ -126,7 +131,7 @@
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="data">Data</label>
-                                    <input type="text" class="form-control"  name="data" placeholder="Data" />
+                                    <input type="text" class="form-control"  name="data" placeholder="dd/mm/aaaa" />
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="motivo">Motivo</label>

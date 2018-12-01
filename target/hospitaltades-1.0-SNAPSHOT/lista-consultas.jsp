@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -56,12 +57,23 @@
 
                 <div id="menu-container">
                     <hr style="margin: 8px;">
+                    <c:if test="${usuarioCargo == 'Atendente'}">
+                        <div class="menu-item"><i class="fas fa-stethoscope" style="padding-right: 6px; color: #006EA2; font-size: 1.3rem;"></i>
+                            <a href="${createAppointment}" style="text-decoration: none; color: #4BB543; font-weight: bolder">Marcar Consulta</a>
+                        </div>
+                    </c:if>
+
+                    <c:if test="${usuarioCargo == 'Medico'}">
+                        <div class="menu-item"><i class="fas fa-stethoscope" style="padding-right: 6px; color: #006EA2; font-size: 1.3rem;"></i>
+                            <a href="${createAppointment}" style="text-decoration: none; color: #4BB543; font-weight: bolder">Consultas</a>
+                        </div>
+                    </c:if>
 
                     <div class="menu-item"><i class="fas fa-user-injured" style="padding-right: 6px; color: #006EA2; font-size: 1.3rem;"></i>
                         <a href="${patientsLink}" style="text-decoration: none; color: inherit;">Pacientes</a>
                     </div>
 
-                    <c:if test="${usuarioCargo == 'Médico' || usuarioCargo == 'Admin'}">
+                    <c:if test="${usuarioCargo == 'Medico' || usuarioCargo == 'Admin'}">
                         <div class="menu-item"><i class="fas fa-stethoscope" style="padding-right: 6px; color: #006EA2; font-size: 1.3rem;"></i>
                             <a href="${medicsLink}" style="text-decoration: none; color: inherit;">Médicos</a>
                         </div>
@@ -106,10 +118,12 @@
                 </div>
                 <div id="content-container">
                     <div class="add-patient">
-                        <form name="novaconsultaform" action="ConsultaControllerServlet" method="POST">
-                            <input type="hidden" name="command" value="">
-                            <button name="nova consulta" class="btn-primary">Nova Consulta</button>
-                        </form>
+                        <c:if test="${usuarioCargo == 'Atendente'}">
+                            <form name="novaconsultaform" action="ConsultaControllerServlet" method="POST">
+                                <input type="hidden" name="command" value="">
+                                <button name="nova consulta" class="btn-primary">Nova Consulta</button>
+                            </form>
+                        </c:if>
                     </div>
                     <div class="table-session">
                         <table class="tades-table" cellspacing="0">
@@ -119,6 +133,7 @@
                                     <th scope="col">Motivo</th>
                                     <th scope="col">Medico</th>
                                     <th scope="col">Atendente</th>
+                                    <th scope="col">Data</th>
                                     <th scope="col">#</th>
                                 </tr>
                             </thead>
@@ -135,16 +150,27 @@
                                         <c:param name="consultaId" value="${consulta.idConsulta}" />
                                     </c:url>
 
+                                    <c:url var="attendAppointment" value="ConsultaControllerServlet">
+                                        <c:param name="command" value="ATTEND APPOINTMENT" />
+                                        <c:param name="consultaId" value="${consulta.idConsulta}" />
+                                    </c:url>
+
                                     <tr>
                                         <th scope="row">${consulta.nomePaciente}</th>
                                         <td scope="row">${consulta.motivo}</td>
                                         <td scope="row">${consulta.nomeMedico}</td>
                                         <td scope="row">${consulta.usuarioNome}</td>
+                                        <td scope="row"><fmt:formatDate value="${consulta.data}" type="both" pattern="dd/MM/yyyy" dateStyle="full"/></td>
                                         <td scope="row">
                                             <a href="${link}">Atualizar</a>
                                             |
                                             <a href="${deleteLink}" onclick="if (!(confirm('Você tem certeza que deseja excluir este funcionário?')))
                                                         return false">Deletar</a>
+
+                                            <c:if test="${usuarioCargo == 'Medico'}">
+                                                |
+                                                <a href="${attendAppointment}">Atender</a>
+                                            </c:if>
                                         </td>
                                     </tr>    
                                 </c:forEach>

@@ -162,30 +162,56 @@ public class RemedioDbUtil {
         }
 
     }
-    
-    public void deleteRemedy(String theRemedioId) throws Exception {
-        
+
+    public void updateRemedioQtd(String theRemedioId, String qtdRemedio) throws Exception {
+
         Connection myConn = null;
         PreparedStatement myStmt = null;
-        
+
+        int remedioId = 0;
+        int qtd = 0;
+
         try {
-         
+
+            remedioId = Integer.parseInt(theRemedioId);
+            qtd = Integer.parseInt(qtdRemedio);
+
+            myConn = dataSource.getConnection();
+
+            String sql = "update remedio "
+                    + "set quantidade=quantidade - " + qtd
+                    + " where idRemedio=?";
+
+            myStmt = myConn.prepareStatement(sql);
+            myStmt.setInt(1, remedioId);
+            myStmt.execute();
+
+        } finally {
+            close(myConn, myStmt, null);
+        }
+    }
+
+    public void deleteRemedy(String theRemedioId) throws Exception {
+
+        Connection myConn = null;
+        PreparedStatement myStmt = null;
+
+        try {
+
             int remedioId = Integer.parseInt(theRemedioId);
-            
+
             myConn = dataSource.getConnection();
 
             String sql = "update remedio "
                     + "set ativo=false "
                     + "where idRemedio=?";
-            
+
             myStmt = myConn.prepareStatement(sql);
-            
+
             myStmt.setInt(1, remedioId);
-            
+
             myStmt.execute();
-        }
-        
-        finally {
+        } finally {
             close(myConn, myStmt, null);
         }
     }

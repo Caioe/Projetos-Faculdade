@@ -46,6 +46,7 @@ public class ConsultaDbUtil {
             while (myRs.next()) {
 
                 int idConsulta = myRs.getInt("idConsulta");
+                Date data = myRs.getDate("data");
                 String motivo = myRs.getString("motivo");
                 int idPaciente = myRs.getInt("idPaciente");
                 String nomePaciente = myRs.getString("nomePaciente");
@@ -54,7 +55,7 @@ public class ConsultaDbUtil {
                 String usuarioNome = myRs.getString("usuarioNome");
                 boolean ativo = myRs.getBoolean("ativo");
 
-                Consulta consulta = new Consulta(idConsulta, motivo, idPaciente, nomePaciente, idMedico, nomeMedico, usuarioNome, ativo);
+                Consulta consulta = new Consulta(idConsulta, data, motivo, idPaciente, nomePaciente, idMedico, nomeMedico, usuarioNome, ativo);
 
                 consultas.add(consulta);
             }
@@ -77,19 +78,21 @@ public class ConsultaDbUtil {
 
             // Criando um SQL para inserir no banco
             String sql = "insert into consultas "
-                    + "(motivo, idPaciente, nomePaciente, idMedico, nomeMedico, usuarioNome, ativo)"
-                    + "values (?, ?, ?, ?, ?, ?, ?)";
+                    + "(data, motivo, idPaciente, nomePaciente, idMedico, nomeMedico, usuarioNome, ativo)"
+                    + "values (?, ?, ?, ?, ?, ?, ?, ?)";
 
             myStmt = myConn.prepareStatement(sql);
 
+            java.sql.Date sqlDate = new java.sql.Date(consulta.getData().getTime());
             // Atribuindo os parametros para o Paciente
-            myStmt.setString(1, consulta.getMotivo());
-            myStmt.setInt(2, consulta.getIdPaciente());
-            myStmt.setString(3, consulta.getNomePaciente());
-            myStmt.setInt(4, consulta.getIdMedico());
-            myStmt.setString(5, consulta.getNomeMedico());
-            myStmt.setString(6, consulta.getUsuarioNome());
-            myStmt.setBoolean(7, consulta.isAtivo());
+            myStmt.setDate(1, sqlDate);
+            myStmt.setString(2, consulta.getMotivo());
+            myStmt.setInt(3, consulta.getIdPaciente());
+            myStmt.setString(4, consulta.getNomePaciente());
+            myStmt.setInt(5, consulta.getIdMedico());
+            myStmt.setString(6, consulta.getNomeMedico());
+            myStmt.setString(7, consulta.getUsuarioNome());
+            myStmt.setBoolean(8, consulta.isAtivo());
 
             // Executando o comando SQL
             myStmt.execute();
@@ -126,6 +129,7 @@ public class ConsultaDbUtil {
             myRs = myStmt.executeQuery();
 
             if (myRs.next()) {
+                Date data = myRs.getDate("data");
                 String motivo = myRs.getString("motivo");
                 int idPaciente = myRs.getInt("idPaciente");
                 String nomePaciente = myRs.getString("nomePaciente");
@@ -134,7 +138,7 @@ public class ConsultaDbUtil {
                 String usuarioNome = myRs.getString("usuarioNome");
                 boolean ativo = myRs.getBoolean("ativo");
 
-                consulta = new Consulta(consultaId, motivo, idPaciente, nomePaciente, idMedico, nomeMedico, usuarioNome, ativo);
+                consulta = new Consulta(consultaId, data, motivo, idPaciente, nomePaciente, idMedico, nomeMedico, usuarioNome, ativo);
 
             } else {
                 throw new Exception("Não pode achar o ID do médico: " + consultaId);
@@ -155,19 +159,21 @@ public class ConsultaDbUtil {
             myConn = dataSource.getConnection();
 
             String sql = "update consultas "
-                    + "motivo=?, idPaciente=?, nomePaciente=?, idMedico=?, nomeMedico=?, usuarioNome=?, ativo=? "
+                    + "set data=?, motivo=?, idPaciente=?, nomePaciente=?, idMedico=?, nomeMedico=?, usuarioNome=?, ativo=? "
                     + "where idConsulta=?";
 
             myStmt = myConn.prepareStatement(sql);
-            
-            myStmt.setString(1, consulta.getMotivo());
-            myStmt.setInt(2, consulta.getIdPaciente());
-            myStmt.setString(3, consulta.getNomePaciente());
-            myStmt.setInt(4, consulta.getIdMedico());
-            myStmt.setString(5, consulta.getNomeMedico());
-            myStmt.setString(6, consulta.getUsuarioNome());
-            myStmt.setBoolean(7, consulta.isAtivo());
-            
+
+            myStmt.setDate(1, (java.sql.Date) consulta.getData());
+            myStmt.setString(2, consulta.getMotivo());
+            myStmt.setInt(3, consulta.getIdPaciente());
+            myStmt.setString(4, consulta.getNomePaciente());
+            myStmt.setInt(5, consulta.getIdMedico());
+            myStmt.setString(6, consulta.getNomeMedico());
+            myStmt.setString(7, consulta.getUsuarioNome());
+            myStmt.setBoolean(8, consulta.isAtivo());
+            myStmt.setInt(9, consulta.getIdConsulta());
+
             myStmt.execute();
 
         } finally {
@@ -177,30 +183,58 @@ public class ConsultaDbUtil {
         }
 
     }
-    
-    public void deleteAppointment(String theConsultaId) throws Exception {
-        
+
+    public void updateAttendedConsulta(Consulta consulta) throws Exception {
+
         Connection myConn = null;
         PreparedStatement myStmt = null;
-        
+
         try {
-         
+            myConn = dataSource.getConnection();
+
+            String sql = "update consultas "
+                    + "set idRemedio=?, nomeRemedio=?, ativo=?, obsMedica=? "
+                    + "where idConsulta=?";
+
+            myStmt = myConn.prepareStatement(sql);
+
+            myStmt.setInt(1, consulta.getIdRemedio());
+            myStmt.setString(2, consulta.getNomeRemedio());
+            myStmt.setBoolean(3, consulta.isAtivo());
+            myStmt.setString(4, consulta.getObsMedica());
+            myStmt.setInt(5, consulta.getIdConsulta());
+
+            myStmt.execute();
+
+        } finally {
+
+            close(myConn, myStmt, null);
+
+        }
+
+    }
+
+    public void deleteAppointment(String theConsultaId) throws Exception {
+
+        Connection myConn = null;
+        PreparedStatement myStmt = null;
+
+        try {
+
             int consultaId = Integer.parseInt(theConsultaId);
-            
+
             myConn = dataSource.getConnection();
 
             String sql = "update consultas "
                     + "set ativo=false "
                     + "where idConsulta=?";
-            
+
             myStmt = myConn.prepareStatement(sql);
-            
+
             myStmt.setInt(1, consultaId);
-            
+
             myStmt.execute();
-        }
-        
-        finally {
+        } finally {
             close(myConn, myStmt, null);
         }
     }

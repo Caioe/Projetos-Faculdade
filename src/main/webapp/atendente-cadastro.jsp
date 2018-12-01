@@ -55,12 +55,22 @@
 
                 <div id="menu-container">
                     <hr style="margin: 8px;">
+                    <c:if test="${usuarioCargo == 'Atendente'}">
+                        <div class="menu-item"><i class="fas fa-stethoscope" style="padding-right: 6px; color: #006EA2; font-size: 1.3rem;"></i>
+                            <a href="${createAppointment}" style="text-decoration: none; color: #4BB543; font-weight: bolder">Marcar Consulta</a>
+                        </div>
+                    </c:if>
 
+                    <c:if test="${usuarioCargo == 'Medico'}">
+                        <div class="menu-item"><i class="fas fa-stethoscope" style="padding-right: 6px; color: #006EA2; font-size: 1.3rem;"></i>
+                            <a href="${createAppointment}" style="text-decoration: none; color: #4BB543; font-weight: bolder">Consultas</a>
+                        </div>
+                    </c:if>
                     <div class="menu-item"><i class="fas fa-user-injured" style="padding-right: 6px; color: #006EA2; font-size: 1.3rem;"></i>
                         <a href="${patientsLink}" style="text-decoration: none; color: inherit;">Pacientes</a>
                     </div>
 
-                    <c:if test="${usuarioCargo == 'Médico' || usuarioCargo == 'Admin'}">
+                    <c:if test="${usuarioCargo == 'Medico' || usuarioCargo == 'Admin'}">
                         <div class="menu-item"><i class="fas fa-stethoscope" style="padding-right: 6px; color: #006EA2; font-size: 1.3rem;"></i>
                             <a href="${medicsLink}" style="text-decoration: none; color: inherit;">Médicos</a>
                         </div>

@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <%-- 
     Document   : lista-pacientes
     Created on : 27/09/2018, 21:02:09
@@ -9,8 +10,8 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <title>Ínicio</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Cadastro de Médico</title>
 
         <link type="text/css" rel="stylesheet" href="client/css/paciente-cadastro.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
@@ -50,6 +51,9 @@
                     <c:param name="command" value="READ" />
                 </c:url>
 
+                <c:url var="createAppointment" value="ConsultaControllerServlet?command=CREATE+APPOINTMENT">
+                </c:url>
+
                 <c:url var="homeLink" value="home.jsp" />
 
 
@@ -64,6 +68,12 @@
                     <c:if test="${usuarioCargo == 'Medico'}">
                         <div class="menu-item"><i class="fas fa-stethoscope" style="padding-right: 6px; color: #006EA2; font-size: 1.3rem;"></i>
                             <a href="${createAppointment}" style="text-decoration: none; color: #4BB543; font-weight: bolder">Consultas</a>
+                        </div>
+                    </c:if>
+
+                    <c:if test="${usuarioCargo == 'Atendente'}">
+                        <div class="menu-item"><i class="fas fa-stethoscope" style="padding-right: 6px; color: #006EA2; font-size: 1.3rem;"></i>
+                            <a href="${createAppointment}" style="text-decoration: none; color: #4BB543; font-weight: bolder">Marcar Consulta</a>
                         </div>
                     </c:if>
 
@@ -106,55 +116,67 @@
                             <button type="submit" name="logout" class="logout-buton"><i class="fas fa-sign-out-alt" style="padding-right: 12px; color: #fff;"></i>Sair</button>
                         </form>
                     </div>
+
                 </div>
             </div>
             <div id="content-wrapper">
                 <div id="topbar-container">
-
                     <div class="main-title"><a href="${homeLink}"><i class="fas fa-hospital-alt" style="padding-right: 20px; color: #FA4860;"></i>hospital tades</a></div>
                     <div id="row"></div>
                 </div>
                 <div id="content-container">
                     <div class="title-session">
-                        <h3>Cadastro de Médico</h3>
+                        <h3>Realizando Consulta</h3>
                     </div>
                     <div class="form-session">
-                        <form action="MedicoControllerServlet" method="POST">
+                        <form action="ConsultaControllerServlet" method="POST">
 
-                            <input type="hidden" name="command" value="CREATE MEDIC" />
+                            <input type="hidden" name="command" value="UPDATE ATTENDED APPOINTMENT" />
+
+                            <input type="hidden" name="consultaId" value="${CONSULTA.idConsulta}" />
 
                             <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="nome">Nome</label>
-                                    <input type="text" class="form-control"  name="nome" placeholder="Nome" />
+                                <div class="form-group col-md-12">
+                                    <h2 style="font-weight: bolder; color:#545454">Paciente: ${CONSULTA.nomePaciente}</h2>
                                 </div>
-                                <div class="form-group col-md-6">
-                                    <label for="sobrenome">Sobrenome</label>
-                                    <input type="text" class="form-control" name="sobrenome" placeholder="Sobrenome" />
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <h2 style="font-weight: bolder; color:#545454">Motivo: ${CONSULTA.motivo}</h2>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <h2 style="font-weight: bolder; color:#545454">Data: ${CONSULTA.data}</h2>
+                                </div>
+                            </div>
+
+
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label for="obsMedica">Observações médicas</label>
+                                    <textarea class="form-control" name="obsMedica" placeholder="Insira informações sobre o ocorrido na consulta"></textarea>
                                 </div>
                             </div>
 
                             <div class="form-row">
-                                <div class="form-group col-md-4">
-                                    <label for="cpf">CPF</label>
-                                    <input type="text" class="form-control"  name="cpf">
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <label for="crm">CRM</label>
-                                    <input type="text" class="form-control"  name="crm">
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <label for="sexo">Sexo</label>
-                                    <select class="form-control-select" name="sexo">
-                                        <option value="Masculino">Masculino</option>
-                                        <option value="Feminino">Feminino</option>
+                                <div class="form-group col-md-6">
+                                    <label for="idRemedio">Remédio?</label>
+                                    <select class="form-control-select" name="idRemedio">
+                                        <c:forEach var="remedio" items="${REMEDIOS}">
+                                            <option value="${remedio.idRemedio}">${remedio.nome}</option>
+                                        </c:forEach>
                                     </select>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="qtdRemedio">Quantidade</label>
+                                    <input type="number" class="form-control" name="qtdRemedio" />
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <div class="col-sm-10">
-                                    <input type="submit" value="Salvar" class="btn-save" />
+                                    <input type="submit" value="Finalizar Atendimento" class="btn-save" />
                                 </div>
                             </div>
 
@@ -163,7 +185,7 @@
                     <div style="clear: both;"></div>
 
                     <p style="padding: 0px 410px;">
-                        <a href="MedicoControllerServlet">Voltar a lista de Funcionários</a>
+                        <a href="ConsultaControllerServlet">Voltar a lista de Consultas</a>
                     </p>
 
 
@@ -172,13 +194,3 @@
         </div>
     </body>
 </html>
-
-
-
-
-
-
-
-
-
-

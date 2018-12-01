@@ -19,10 +19,43 @@ public class Consulta {
     private String nomePaciente;
     private int idMedico;
     private String nomeMedico;
+    private int idRemedio;
+    private String nomeRemedio;
     private String usuarioNome;
     private boolean ativo;
+    private String obsMedica;
 
-    public Consulta(int idConsulta, String motivo, int idPaciente, String nomePaciente, int idMedico, String nomeMedico, String usuarioNome, boolean ativo) {
+    public Consulta(int idConsulta, Date data, String motivo, int idPaciente, String nomePaciente, int idMedico, String nomeMedico, int idRemedio, String nomeRemedio, String usuarioNome, boolean ativo, String obsMedica) {
+        this.data = data;
+        this.idConsulta = idConsulta;
+        this.motivo = motivo;
+        this.idPaciente = idPaciente;
+        this.nomePaciente = nomePaciente;
+        this.idMedico = idMedico;
+        this.nomeMedico = nomeMedico;
+        this.idRemedio = idRemedio;
+        this.nomeRemedio = nomeRemedio;
+        this.usuarioNome = usuarioNome;
+        this.ativo = ativo;
+        this.obsMedica = obsMedica;
+    }
+
+    public Consulta(Date data, String motivo, int idPaciente, String nomePaciente, int idMedico, String nomeMedico, int idRemedio, String nomeRemedio, String usuarioNome, boolean ativo, String obsMedica) {
+        this.data = data;
+        this.motivo = motivo;
+        this.idPaciente = idPaciente;
+        this.nomePaciente = nomePaciente;
+        this.idMedico = idMedico;
+        this.nomeMedico = nomeMedico;
+        this.idRemedio = idRemedio;
+        this.nomeRemedio = nomeRemedio;
+        this.usuarioNome = usuarioNome;
+        this.ativo = ativo;
+        this.obsMedica = obsMedica;
+    }
+
+    public Consulta(int idConsulta, Date data, String motivo, int idPaciente, String nomePaciente, int idMedico, String nomeMedico, String usuarioNome, boolean ativo) {
+        this.data = data;
         this.idConsulta = idConsulta;
         this.motivo = motivo;
         this.idPaciente = idPaciente;
@@ -33,7 +66,8 @@ public class Consulta {
         this.ativo = ativo;
     }
 
-    public Consulta(String motivo, int idPaciente, String nomePaciente, int idMedico, String nomeMedico, String usuarioNome, boolean ativo) {
+    public Consulta(Date data, String motivo, int idPaciente, String nomePaciente, int idMedico, String nomeMedico, String usuarioNome, boolean ativo) {
+        this.data = data;
         this.motivo = motivo;
         this.idPaciente = idPaciente;
         this.nomePaciente = nomePaciente;
@@ -42,6 +76,8 @@ public class Consulta {
         this.usuarioNome = usuarioNome;
         this.ativo = ativo;
     }
+    
+    
 
     public int getIdConsulta() {
         return idConsulta;
@@ -49,6 +85,14 @@ public class Consulta {
 
     public void setIdConsulta(int idConsulta) {
         this.idConsulta = idConsulta;
+    }
+    
+    public Date getData() {
+        return data;
+    }
+    
+    public void setData(Date data) {
+        this.data = data;
     }
 
     public String getMotivo() {
@@ -91,6 +135,22 @@ public class Consulta {
         this.nomeMedico = nomeMedico;
     }
 
+    public int getIdRemedio() {
+        return idRemedio;
+    }
+
+    public void setIdRemedio(int idRemedio) {
+        this.idRemedio = idRemedio;
+    }
+
+    public String getNomeRemedio() {
+        return nomeRemedio;
+    }
+
+    public void setNomeRemedio(String nomeRemedio) {
+        this.nomeRemedio = nomeRemedio;
+    }
+
     public String getUsuarioNome() {
         return usuarioNome;
     }
@@ -107,5 +167,15 @@ public class Consulta {
         this.ativo = ativo;
     }
 
+    public String getObsMedica() {
+        return obsMedica;
+    }
 
+    public void setObsMedica(String obsMedica) {
+        this.obsMedica = obsMedica;
+    }
+    
+    
+
+    
 }
