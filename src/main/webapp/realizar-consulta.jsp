@@ -7,6 +7,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -135,23 +136,17 @@
 
                             <input type="hidden" name="consultaId" value="${CONSULTA.idConsulta}" />
 
-                            <div class="form-row">
-                                <div class="form-group col-md-12">
-                                    <h2 style="font-weight: bolder; color:#545454">Paciente: ${CONSULTA.nomePaciente}</h2>
-                                </div>
+                            <div style="display: flex; align-items: center;">
+                                    <h3 style="font-weight: bolder; color:#545454">Paciente: </h3><span style="color:#545454">${CONSULTA.nomePaciente}</span>
                             </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-12">
-                                    <h2 style="font-weight: bolder; color:#545454">Motivo: ${CONSULTA.motivo}</h2>
-                                </div>
+                            <div style="display: flex; align-items: center;">
+                                    <h3 style="font-weight: bolder; color:#545454">Motivo: </h3><span style="color:#545454">${CONSULTA.motivo}</span>
                             </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-12">
-                                    <h2 style="font-weight: bolder; color:#545454">Data: ${CONSULTA.data}</h2>
-                                </div>
+                            <div style="display: flex; align-items: center;">
+                                    <h3 style="font-weight: bolder; color:#545454">Data: </h3><span style="color:#545454"><fmt:formatDate value="${CONSULTA.data}" type="both" pattern="dd/MM/yyyy" dateStyle="full"/></span>
                             </div>
 
-
+<hr/>
                             <div class="form-row">
                                 <div class="form-group col-md-12">
                                     <label for="obsMedica">Observações médicas</label>

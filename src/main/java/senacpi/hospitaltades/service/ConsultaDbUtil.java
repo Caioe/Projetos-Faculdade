@@ -53,9 +53,10 @@ public class ConsultaDbUtil {
                 int idMedico = myRs.getInt("idMedico");
                 String nomeMedico = myRs.getString("nomeMedico");
                 String usuarioNome = myRs.getString("usuarioNome");
+                String codFilial = myRs.getString("codFilial");
                 boolean ativo = myRs.getBoolean("ativo");
 
-                Consulta consulta = new Consulta(idConsulta, data, motivo, idPaciente, nomePaciente, idMedico, nomeMedico, usuarioNome, ativo);
+                Consulta consulta = new Consulta(idConsulta, data, motivo, idPaciente, nomePaciente, idMedico, nomeMedico, usuarioNome, codFilial, ativo);
 
                 consultas.add(consulta);
             }
@@ -78,8 +79,8 @@ public class ConsultaDbUtil {
 
             // Criando um SQL para inserir no banco
             String sql = "insert into consultas "
-                    + "(data, motivo, idPaciente, nomePaciente, idMedico, nomeMedico, usuarioNome, ativo)"
-                    + "values (?, ?, ?, ?, ?, ?, ?, ?)";
+                    + "(data, motivo, idPaciente, nomePaciente, idMedico, nomeMedico, usuarioNome, codFilial, ativo)"
+                    + "values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
             myStmt = myConn.prepareStatement(sql);
 
@@ -92,7 +93,8 @@ public class ConsultaDbUtil {
             myStmt.setInt(5, consulta.getIdMedico());
             myStmt.setString(6, consulta.getNomeMedico());
             myStmt.setString(7, consulta.getUsuarioNome());
-            myStmt.setBoolean(8, consulta.isAtivo());
+            myStmt.setString(8, consulta.getCodFilial());
+            myStmt.setBoolean(9, consulta.isAtivo());
 
             // Executando o comando SQL
             myStmt.execute();
@@ -136,9 +138,10 @@ public class ConsultaDbUtil {
                 int idMedico = myRs.getInt("idMedico");
                 String nomeMedico = myRs.getString("nomeMedico");
                 String usuarioNome = myRs.getString("usuarioNome");
+                String codFilial = myRs.getString("codFilial");
                 boolean ativo = myRs.getBoolean("ativo");
 
-                consulta = new Consulta(consultaId, data, motivo, idPaciente, nomePaciente, idMedico, nomeMedico, usuarioNome, ativo);
+                consulta = new Consulta(consultaId, data, motivo, idPaciente, nomePaciente, idMedico, nomeMedico, usuarioNome, codFilial, ativo);
 
             } else {
                 throw new Exception("Não pode achar o ID do médico: " + consultaId);
@@ -159,7 +162,7 @@ public class ConsultaDbUtil {
             myConn = dataSource.getConnection();
 
             String sql = "update consultas "
-                    + "set data=?, motivo=?, idPaciente=?, nomePaciente=?, idMedico=?, nomeMedico=?, usuarioNome=?, ativo=? "
+                    + "set data=?, motivo=?, idPaciente=?, nomePaciente=?, idMedico=?, nomeMedico=?, usuarioNome=?, codFilial=?, ativo=? "
                     + "where idConsulta=?";
 
             myStmt = myConn.prepareStatement(sql);
@@ -171,8 +174,9 @@ public class ConsultaDbUtil {
             myStmt.setInt(5, consulta.getIdMedico());
             myStmt.setString(6, consulta.getNomeMedico());
             myStmt.setString(7, consulta.getUsuarioNome());
-            myStmt.setBoolean(8, consulta.isAtivo());
-            myStmt.setInt(9, consulta.getIdConsulta());
+            myStmt.setString(8, consulta.getCodFilial());
+            myStmt.setBoolean(9, consulta.isAtivo());
+            myStmt.setInt(10, consulta.getIdConsulta());
 
             myStmt.execute();
 

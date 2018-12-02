@@ -6,10 +6,7 @@
 package senacpi.hospitaltades.dao;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.annotation.Resource;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -18,11 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
-import senacpi.hospitaltades.model.Atendente;
-import senacpi.hospitaltades.model.Medico;
 import senacpi.hospitaltades.model.Usuario;
-import senacpi.hospitaltades.service.AtendenteDbUtil;
-import senacpi.hospitaltades.service.MedicoDbUtil;
 import senacpi.hospitaltades.service.UsuarioDbUtil;
 
 /**
@@ -32,8 +25,6 @@ import senacpi.hospitaltades.service.UsuarioDbUtil;
 public class UsuarioControllerServlet extends HttpServlet {
 
     private UsuarioDbUtil usuarioDbUtil;
-    private MedicoDbUtil medicoDbUtil;
-    private AtendenteDbUtil atendenteDbUtil;
 
     @Resource(name = "jdbc/hospital_tades")
     private DataSource dataSource;
@@ -162,6 +153,7 @@ public class UsuarioControllerServlet extends HttpServlet {
                             session.setAttribute("usuarioNome", usuario.getNome());
                             session.setAttribute("usuarioCargo", usuario.getCargo());
                             session.setAttribute("usuarioLogin", usuario.getLogin());
+                            session.setAttribute("usuarioCodFilial", usuario.getCodFilial());
 
                             RequestDispatcher dispatcher = request.getRequestDispatcher("/home.jsp");
 
@@ -196,10 +188,11 @@ public class UsuarioControllerServlet extends HttpServlet {
         String senha = request.getParameter("senha");
         String nome = request.getParameter("nome");
         String cargo = request.getParameter("cargo");
+        String codFilial = request.getParameter("codFilial");
         Boolean ativo = true;
 
         // Criar um objeto do PACIENTE
-        Usuario usuario = new Usuario(login, senha, nome, cargo, ativo, ativo);
+        Usuario usuario = new Usuario(login, senha, nome, cargo, ativo, codFilial, ativo);
 
         // Adicionar esse PACIENTE no banco de Dados
         usuarioDbUtil.addUser(usuario);
@@ -263,9 +256,10 @@ public class UsuarioControllerServlet extends HttpServlet {
         String nome = request.getParameter("nome");
         String cargo = request.getParameter("cargo");
         Boolean loginAtivo = true;
+        String codFilial = request.getParameter("codFilial");
         Boolean ativo = true;
 
-        Usuario usuario = new Usuario(idUsuario, login, senha, nome, cargo, loginAtivo, ativo);
+        Usuario usuario = new Usuario(idUsuario, login, senha, nome, cargo, loginAtivo, codFilial, ativo);
 
         usuarioDbUtil.updateUser(usuario);
 

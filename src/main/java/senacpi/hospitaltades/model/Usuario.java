@@ -17,35 +17,37 @@ public class Usuario {
     private String nome;
     private String cargo;
     private boolean loginAtivo;
+    private String codFilial;
     private boolean ativo;
 
-    public Usuario(int idUsuario, String login, String senha, String nome, String cargo, boolean loginAtivo, boolean ativo) {
+    public Usuario(int idUsuario, String login, String senha, String nome, String cargo, boolean loginAtivo, String codFilial, boolean ativo) {
         this.idUsuario = idUsuario;
         this.login = login;
         this.senha = senha;
         this.nome = nome;
         this.cargo = cargo;
+        this.codFilial = codFilial;
         this.ativo = ativo;
     }
 
-    public Usuario(String login, String senha, String nome, String cargo, boolean loginAtivo, boolean ativo) {
+    public Usuario(String login, String senha, String nome, String cargo, boolean loginAtivo, String codFilial, boolean ativo) {
         this.login = login;
         this.senha = senha;
         this.nome = nome;
         this.cargo = cargo;
+        this.codFilial = codFilial;
         this.ativo = ativo;
     }
 
-    public Usuario(int idUsuario, String login, String senha, String nome, String cargo, boolean ativo) {
+    public Usuario(int idUsuario, String login, String senha, String nome, String cargo, String codFilial, boolean ativo) {
         this.idUsuario = idUsuario;
         this.login = login;
         this.senha = senha;
         this.nome = nome;
         this.cargo = cargo;
+        this.codFilial = codFilial;
         this.ativo = ativo;
     }
-    
-    
 
     public int getIdUsuario() {
         return idUsuario;
@@ -90,9 +92,17 @@ public class Usuario {
     public boolean isLoginAtivo() {
         return loginAtivo;
     }
-    
+
     public void setLoginAtivo(boolean loginAtivo) {
         this.loginAtivo = loginAtivo;
+    }
+
+    public String getCodFilial() {
+        return codFilial;
+    }
+
+    public void setCodFilial(String codFilial) {
+        this.codFilial = codFilial;
     }
 
     public boolean isAtivo() {
@@ -103,7 +113,4 @@ public class Usuario {
         this.ativo = ativo;
     }
 
-    
-    
-    
 }

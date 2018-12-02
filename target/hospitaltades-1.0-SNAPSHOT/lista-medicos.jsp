@@ -153,31 +153,32 @@
                                         <c:param name="cargo" value="Medico" />
                                     </c:url>
 
-
-                                    <tr>
-                                        <th scope="row">${medico.nome}</th>
-                                        <td scope="row">${medico.sobrenome}</td>
-                                        <td scope="row">${medico.crm}</td>
-                                        <td scope="row">
-                                            <a href="${link}">Atualizar</a>
-                                            |
-                                            <a href="${deleteLink}" onclick="if (!(confirm('Você tem certeza que deseja excluir este funcionário?')))
-                                                        return false">Deletar</a>
-
-                                            <c:if test="${medico.idUsuario ne 0 || null}">
+                                    <c:if test="${medico.codFilial eq usuarioCodFilial}">
+                                        <tr>
+                                            <th scope="row">${medico.nome}</th>
+                                            <td scope="row">${medico.sobrenome}</td>
+                                            <td scope="row">${medico.crm}</td>
+                                            <td scope="row">
+                                                <a href="${link}">Atualizar</a>
                                                 |
-                                                <a href="${editLogin}">Editar Login</a>
-                                            </c:if>
-                                            <c:if test="${medico.idUsuario eq 0 || null}">
-                                                |
-                                                <a href="${createLogin}">Criar Login</a>
-                                            </c:if>
+                                                <a href="${deleteLink}" onclick="if (!(confirm('Você tem certeza que deseja excluir este funcionário?')))
+                                                            return false">Deletar</a>
+
+                                                <c:if test="${medico.idUsuario ne 0 || null}">
+                                                    |
+                                                    <a href="${editLogin}">Editar Login</a>
+                                                </c:if>
+                                                <c:if test="${medico.idUsuario eq 0 || null}">
+                                                    |
+                                                    <a href="${createLogin}">Criar Login</a>
+                                                </c:if>
 
 
 
 
                                             </td>
-                                        </tr>    
+                                        </tr> 
+                                    </c:if>
                                 </c:forEach>
                             </tbody>
                         </table>

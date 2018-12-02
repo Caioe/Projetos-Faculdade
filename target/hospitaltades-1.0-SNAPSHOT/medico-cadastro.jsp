@@ -124,13 +124,17 @@
                             <input type="hidden" name="command" value="CREATE MEDIC" />
 
                             <div class="form-row">
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-md-4">
                                     <label for="nome">Nome</label>
                                     <input type="text" class="form-control"  name="nome" placeholder="Nome" />
                                 </div>
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-md-4">
                                     <label for="sobrenome">Sobrenome</label>
                                     <input type="text" class="form-control" name="sobrenome" placeholder="Sobrenome" />
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="crm">CRM</label>
+                                    <input type="text" class="form-control"  name="crm">
                                 </div>
                             </div>
 
@@ -140,15 +144,15 @@
                                     <input type="text" class="form-control"  name="cpf">
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <label for="crm">CRM</label>
-                                    <input type="text" class="form-control"  name="crm">
-                                </div>
-                                <div class="form-group col-md-4">
                                     <label for="sexo">Sexo</label>
                                     <select class="form-control-select" name="sexo">
                                         <option value="Masculino">Masculino</option>
                                         <option value="Feminino">Feminino</option>
                                     </select>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="codFilial">Código da Filial</label>
+                                    <input type="text" class="form-control"  name="codFilial" value="${usuarioCodFilial}">
                                 </div>
                             </div>
 

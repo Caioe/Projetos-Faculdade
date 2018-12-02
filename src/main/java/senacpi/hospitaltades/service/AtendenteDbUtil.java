@@ -50,9 +50,10 @@ public class AtendenteDbUtil {
                 String sobrenome = myRs.getString("sobrenome");
                 String cpf = myRs.getString("cpf");
                 String sexo = myRs.getString("sexo");
+                String codFilial = myRs.getString("codFilial");
                 boolean ativo = myRs.getBoolean("ativo");
 
-                Atendente atendente = new Atendente(idAtendente, nome, sobrenome, cpf, sexo, ativo);
+                Atendente atendente = new Atendente(idAtendente, nome, sobrenome, cpf, sexo, codFilial, ativo);
 
                 atendentes.add(atendente);
             }
@@ -75,8 +76,8 @@ public class AtendenteDbUtil {
 
             // Criando um SQL para inserir no banco
             String sql = "insert into atendente "
-                    + "(nome, sobrenome, cpf, sexo, ativo)"
-                    + "values (?, ?, ?, ?, ?)";
+                    + "(nome, sobrenome, cpf, sexo, codFilial, ativo)"
+                    + "values (?, ?, ?, ?, ?, ?)";
 
             myStmt = myConn.prepareStatement(sql);
 
@@ -85,7 +86,8 @@ public class AtendenteDbUtil {
             myStmt.setString(2, atendente.getSobrenome());
             myStmt.setString(3, atendente.getCpf());
             myStmt.setString(4, atendente.getSexo());
-            myStmt.setBoolean(5, atendente.isAtivo());
+            myStmt.setString(5, atendente.getCodFilial());
+            myStmt.setBoolean(6, atendente.isAtivo());
 
             // Executando o comando SQL
             myStmt.execute();
@@ -126,9 +128,10 @@ public class AtendenteDbUtil {
                 String sobrenome = myRs.getString("sobrenome");
                 String cpf = myRs.getString("cpf");
                 String sexo = myRs.getString("sexo");
+                String codFilial = myRs.getString("codFilial");
                 boolean ativo = myRs.getBoolean("ativo");
 
-                atendente = new Atendente(atendenteId, nome, sobrenome, cpf, sexo, ativo);
+                atendente = new Atendente(atendenteId, nome, sobrenome, cpf, sexo, codFilial, ativo);
 
             } else {
                 throw new Exception("Não pode achar o ID do médico: " + atendenteId);
@@ -149,7 +152,7 @@ public class AtendenteDbUtil {
             myConn = dataSource.getConnection();
 
             String sql = "update atendente "
-                    + "set nome=?, sobrenome=?, cpf=?, sexo=?, ativo=? "
+                    + "set nome=?, sobrenome=?, cpf=?, sexo=?, codFilial=?, ativo=? "
                     + "where idAtendente=?";
 
             myStmt = myConn.prepareStatement(sql);
@@ -159,7 +162,8 @@ public class AtendenteDbUtil {
             myStmt.setString(3, atendente.getCpf());
             myStmt.setString(4, atendente.getSexo());
             myStmt.setBoolean(5, atendente.isAtivo());
-            myStmt.setInt(6, atendente.getIdAtendente());
+            myStmt.setString(6, atendente.getCodFilial());
+            myStmt.setInt(7, atendente.getIdAtendente());
 
             myStmt.execute();
 

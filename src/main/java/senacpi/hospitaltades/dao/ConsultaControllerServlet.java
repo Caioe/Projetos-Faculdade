@@ -6,7 +6,6 @@
 package senacpi.hospitaltades.dao;
 
 import java.io.IOException;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -180,10 +179,11 @@ public class ConsultaControllerServlet extends HttpServlet {
         int idMedico = consulta.getIdMedico();
         String nomeMedico = consulta.getNomeMedico();
         String usuarioNome = consulta.getUsuarioNome();
+        String codFilial = consulta.getCodFilial();
         boolean ativo = false;
         String obsMedica = request.getParameter("obsMedica");
-        String qtdRemedio = request.getParameter("qtdRemedio");
 
+        String qtdRemedio = request.getParameter("qtdRemedio");
         String idRemedioString = request.getParameter("idRemedio");
 
         if (idRemedioString != null) {
@@ -196,7 +196,7 @@ public class ConsultaControllerServlet extends HttpServlet {
         }
 
         // Criar um objeto do PACIENTE
-        Consulta uConsulta = new Consulta(consultaId, data, motivo, idPaciente, nomePaciente, idMedico, nomeMedico, idRemedio, nomeRemedio, usuarioNome, ativo, obsMedica);
+        Consulta uConsulta = new Consulta(consultaId, data, motivo, idPaciente, nomePaciente, idMedico, nomeMedico, idRemedio, nomeRemedio, usuarioNome, codFilial, ativo, obsMedica);
 
         consultaDbUtil.updateAttendedConsulta(uConsulta);
         remedioDbUtil.updateRemedioQtd(idRemedioString, qtdRemedio);
@@ -236,10 +236,11 @@ public class ConsultaControllerServlet extends HttpServlet {
         }
 
         String usuarioNome = request.getParameter("usuarioNome");
+        String codFilial = request.getParameter("codFilial");
         Boolean ativo = true;
 
         // Criar um objeto do PACIENTE
-        Consulta consulta = new Consulta(data, motivo, idPaciente, nomePaciente, idMedico, nomeMedico, usuarioNome, ativo);
+        Consulta consulta = new Consulta(data, motivo, idPaciente, nomePaciente, idMedico, nomeMedico, usuarioNome, codFilial, ativo);
 
         consultaDbUtil.addAppointment(consulta);
 
@@ -311,29 +312,42 @@ public class ConsultaControllerServlet extends HttpServlet {
     private void editarConsulta(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
 
-        // Lendo informação do FORMULÁRIO de Paciente
-        List<Paciente> pacientes = pacienteDbUtil.getPacientes();
+        int idPaciente = 0;
+        int idMedico = 0;
+        String nomePaciente = null;
+        String nomeMedico = null;
 
-        request.setAttribute("PACIENTES", pacientes);
-
-        List<Medico> medicos = medicoDbUtil.getMedicos();
-
-        request.setAttribute("MEDICOS", medicos);
-
-        int idConsulta = Integer.parseInt(request.getParameter("consultaId"));
         Date data = formatStringToDate(request.getParameter("data"));
         String motivo = request.getParameter("motivo");
-        int idPaciente = Integer.parseInt(request.getParameter("idPaciente"));
-        Paciente paciente = pacienteDbUtil.getPaciente("idPaciente");
-        String nomePaciente = paciente.getNome();
-        int idMedico = Integer.parseInt(request.getParameter("idMedico"));
-        Medico medico = medicoDbUtil.getMedico("idMedico");
-        String nomeMedico = medico.getNome();
+        String idPacienteString = request.getParameter("idPaciente");
+        String idMedicoString = request.getParameter("idMedico");
+
+        if (idPacienteString != null) {
+            idPaciente = Integer.parseInt(idPacienteString);
+        }
+
+        if (idMedicoString != null) {
+            idMedico = Integer.parseInt(idMedicoString);
+        }
+
+        if (idPaciente != 0) {
+            Paciente paciente = pacienteDbUtil.getPaciente(idPacienteString);
+            nomePaciente = paciente.getNome();
+        }
+
+        if (idMedico != 0) {
+            Medico medico = medicoDbUtil.getMedico(idMedicoString);
+            nomeMedico = medico.getNome();
+        }
+
         String usuarioNome = request.getParameter("usuarioNome");
+        String codFilial = request.getParameter("codFilial");
         Boolean ativo = true;
+        
+        int consultaId = Integer.parseInt(request.getParameter("consultaId"));
 
         // Criar um objeto do PACIENTE
-        Consulta consulta = new Consulta(idConsulta, data, motivo, idPaciente, nomePaciente, idMedico, nomeMedico, usuarioNome, ativo);
+        Consulta consulta = new Consulta(consultaId, data, motivo, idPaciente, nomePaciente, idMedico, nomeMedico, usuarioNome, codFilial, ativo);
 
         // Adicionar esse PACIENTE no banco de Dados
         consultaDbUtil.updateConsulta(consulta);

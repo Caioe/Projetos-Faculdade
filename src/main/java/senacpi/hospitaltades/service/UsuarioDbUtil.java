@@ -28,7 +28,6 @@ public class UsuarioDbUtil {
     public Usuario handleLogin(String login, String senha) throws Exception {
 
         Usuario usuario = null;
-        String errorMessage = null;
 
         Connection myConn = null;
         PreparedStatement myStmt = null;
@@ -39,7 +38,7 @@ public class UsuarioDbUtil {
 
             myConn = dataSource.getConnection();
 
-            String sql = "select idUsuario, nome, cargo from usuario where login=? AND senha=? AND ativo=true";
+            String sql = "select idUsuario, nome, cargo, codFilial from usuario where login=? AND senha=? AND ativo=true";
 
             myStmt = myConn.prepareStatement(sql);
 
@@ -52,9 +51,10 @@ public class UsuarioDbUtil {
                 usuarioId = myRs.getInt("idUsuario");
                 String nome = myRs.getString("nome");
                 String cargo = myRs.getString("cargo");
+                String codFilial = myRs.getString("codFilial");
                 boolean ativo = true;
 
-                usuario = new Usuario(usuarioId, login, senha, nome, cargo, ativo);
+                usuario = new Usuario(usuarioId, login, senha, nome, cargo, codFilial, ativo);
 
             }
             return usuario;
@@ -90,9 +90,10 @@ public class UsuarioDbUtil {
                 String nome = myRs.getString("nome");
                 String cargo = myRs.getString("cargo");
                 boolean loginAtivo = myRs.getBoolean("loginAtivo");
+                String codFilial = myRs.getString("codFilial");
                 boolean ativo = myRs.getBoolean("ativo");
 
-                Usuario usuario = new Usuario(idUsuario, login, senha, nome, cargo, loginAtivo, ativo);
+                Usuario usuario = new Usuario(idUsuario, login, senha, nome, cargo, loginAtivo, codFilial, ativo);
 
                 usuarios.add(usuario);
             }
@@ -135,9 +136,10 @@ public class UsuarioDbUtil {
                 String nome = myRs.getString("nome");
                 String cargo = myRs.getString("cargo");
                 boolean loginAtivo = myRs.getBoolean("loginAtivo");
+                String codFilial = myRs.getString("codFilial");
                 boolean ativo = myRs.getBoolean("ativo");
 
-                usuario = new Usuario(usuarioId, login, senha, nome, cargo, loginAtivo, ativo);
+                usuario = new Usuario(usuarioId, login, senha, nome, cargo, loginAtivo, codFilial, ativo);
 
             } else {
                 throw new Exception("Não pode achar o ID do médico: " + usuarioId);
@@ -158,7 +160,7 @@ public class UsuarioDbUtil {
             myConn = dataSource.getConnection();
 
             String sql = "update usuario "
-                    + "set login=?, senha=?, nome=?, ativo=? "
+                    + "set login=?, senha=?, nome=?, codFilial=?, ativo=? "
                     + "where idUsuario=?";
 
             myStmt = myConn.prepareStatement(sql);
@@ -166,7 +168,8 @@ public class UsuarioDbUtil {
             myStmt.setString(1, usuario.getLogin());
             myStmt.setString(2, usuario.getSenha());
             myStmt.setString(3, usuario.getNome());
-            myStmt.setBoolean(4, usuario.isAtivo());
+            myStmt.setString(4, usuario.getCodFilial());
+            myStmt.setBoolean(5, usuario.isAtivo());
 
             myStmt.execute();
 
@@ -242,8 +245,8 @@ public class UsuarioDbUtil {
 
             // Criando um SQL para inserir no banco
             String sql = "insert into usuario"
-                    + "(login, senha, nome, cargo, loginAtivo,  ativo)"
-                    + "values (?, ?, ?, ?, ?, ?)";
+                    + "(login, senha, nome, cargo, loginAtivo, codFilial, ativo)"
+                    + "values (?, ?, ?, ?, ?, ?, ?)";
 
             myStmt = myConn.prepareStatement(sql);
 
@@ -253,7 +256,8 @@ public class UsuarioDbUtil {
             myStmt.setString(3, usuario.getNome());
             myStmt.setString(4, usuario.getCargo());
             myStmt.setBoolean(5, usuario.isLoginAtivo());
-            myStmt.setBoolean(6, usuario.isAtivo());
+            myStmt.setString(6, usuario.getCodFilial());
+            myStmt.setBoolean(7, usuario.isAtivo());
 
             // Executando o comando SQL
             myStmt.execute();

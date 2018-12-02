@@ -17,32 +17,36 @@ public class Atendente {
     private String cpf;
     private String sexo;
     private int idUsuario;
+    private String codFilial;
     private boolean ativo;
 
-    public Atendente(int idAtendente, String nome, String sobrenome, String cpf, String sexo, boolean ativo) {
+    public Atendente(int idAtendente, String nome, String sobrenome, String cpf, String sexo, String codFilial, boolean ativo) {
         this.idAtendente = idAtendente;
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.cpf = cpf;
         this.sexo = sexo;
+        this.codFilial = codFilial;
         this.ativo = ativo;
     }
 
-    public Atendente(int idAtendente, String nome, String sobrenome, String cpf, String sexo, int idUsuario, boolean ativo) {
+    public Atendente(int idAtendente, String nome, String sobrenome, String cpf, String sexo, int idUsuario, String codFilial, boolean ativo) {
         this.idAtendente = idAtendente;
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.cpf = cpf;
         this.sexo = sexo;
         this.idUsuario = idUsuario;
+        this.codFilial = codFilial;
         this.ativo = ativo;
     }
 
-    public Atendente(String nome, String sobrenome, String cpf, String sexo, boolean ativo) {
+    public Atendente(String nome, String sobrenome, String cpf, String sexo, String codFilial, boolean ativo) {
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.cpf = cpf;
         this.sexo = sexo;
+        this.codFilial = codFilial;
         this.ativo = ativo;
     }
 
@@ -92,6 +96,14 @@ public class Atendente {
 
     public void setTemLogin(int idUsuario) {
         this.idUsuario = idUsuario;
+    }
+
+    public String getCodFilial() {
+        return codFilial;
+    }
+
+    public void setCodFilial(String codFilial) {
+        this.codFilial = codFilial;
     }
 
     public boolean isAtivo() {

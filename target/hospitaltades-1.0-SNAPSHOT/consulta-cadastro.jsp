@@ -140,7 +140,7 @@
                             </div>
 
                             <div class="form-row">
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-md-4">
                                     <label for="idPaciente">Paciente</label>
                                     <select class="form-control-select" name="idPaciente">
                                         <c:forEach var="paciente" items="${PACIENTES}">
@@ -148,13 +148,17 @@
                                         </c:forEach>
                                     </select>
                                 </div>
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-md-4">
                                     <label for="idMedico">Médico</label>
                                     <select class="form-control-select" name="idMedico">
                                         <c:forEach var="medico" items="${MEDICOS}">
                                             <option value="${medico.idMedico}">${medico.nome}</option>
                                         </c:forEach>
                                     </select>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="codFilial">Código da Filial</label>
+                                    <input type="text" class="form-control"  name="codFilial" value="${usuarioCodFilial}">
                                 </div>
                             </div>
 

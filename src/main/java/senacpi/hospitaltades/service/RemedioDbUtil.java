@@ -48,9 +48,10 @@ public class RemedioDbUtil {
                 int idRemedio = myRs.getInt("idRemedio");
                 String nome = myRs.getString("nome");
                 String quantidade = myRs.getString("quantidade");
+                String codFilial = myRs.getString("codFilial");
                 boolean ativo = myRs.getBoolean("ativo");
 
-                Remedio remedio = new Remedio(idRemedio, nome, quantidade, ativo);
+                Remedio remedio = new Remedio(idRemedio, nome, quantidade, codFilial, ativo);
 
                 remedios.add(remedio);
             }
@@ -73,15 +74,16 @@ public class RemedioDbUtil {
 
             // Criando um SQL para inserir no banco
             String sql = "insert into remedio"
-                    + "(nome, quantidade, ativo)"
-                    + "values (?, ?, ?)";
+                    + "(nome, quantidade, codFilial, ativo)"
+                    + "values (?, ?, ?, ?)";
 
             myStmt = myConn.prepareStatement(sql);
 
             // Atribuindo os parametros para o Paciente
             myStmt.setString(1, remedio.getNome());
             myStmt.setString(2, remedio.getQuantidade());
-            myStmt.setBoolean(3, remedio.isAtivo());
+            myStmt.setString(3, remedio.getCodFilial());
+            myStmt.setBoolean(4, remedio.isAtivo());
 
             // Executando o comando SQL
             myStmt.execute();
@@ -120,9 +122,10 @@ public class RemedioDbUtil {
             if (myRs.next()) {
                 String nome = myRs.getString("nome");
                 String quantidade = myRs.getString("quantidade");
+                String codFilial = myRs.getString("codFilial");
                 boolean ativo = myRs.getBoolean("ativo");
 
-                remedio = new Remedio(remedioId, nome, quantidade, ativo);
+                remedio = new Remedio(remedioId, nome, quantidade, codFilial, ativo);
 
             } else {
                 throw new Exception("Não pode achar o ID do médico: " + remedioId);
@@ -143,15 +146,16 @@ public class RemedioDbUtil {
             myConn = dataSource.getConnection();
 
             String sql = "update remedio "
-                    + "set nome=?, quantidade=?, ativo=? "
+                    + "set nome=?, quantidade=?, codFilial=?, ativo=? "
                     + "where idRemedio=?";
 
             myStmt = myConn.prepareStatement(sql);
 
             myStmt.setString(1, remedio.getNome());
             myStmt.setString(2, remedio.getQuantidade());
-            myStmt.setBoolean(3, remedio.isAtivo());
-            myStmt.setInt(4, remedio.getIdRemedio());
+            myStmt.setString(3, remedio.getCodFilial());
+            myStmt.setBoolean(4, remedio.isAtivo());
+            myStmt.setInt(5, remedio.getIdRemedio());
 
             myStmt.execute();
 

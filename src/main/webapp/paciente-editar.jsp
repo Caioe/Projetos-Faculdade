@@ -155,13 +155,17 @@
                             </div>
 
                             <div class="form-row">
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-md-4">
                                     <label for="email">Email</label>
                                     <input type="email" class="form-control" id="email" value="${PACIENTE.email} "name="email" placeholder="Email">
                                 </div>
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-md-4">
                                     <label for="contato">Telefone / Contato</label>
                                     <input type="text" class="form-control" id="contato" value="${PACIENTE.contato}" name="contato" placeholder="1199000..." min="10" max="11">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="codFilial">Código da Filial</label>
+                                    <input type="text" class="form-control"  name="codFilial" value="${usuarioCodFilial}">
                                 </div>
                             </div>
 

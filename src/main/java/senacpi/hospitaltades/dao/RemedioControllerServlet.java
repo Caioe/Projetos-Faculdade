@@ -122,10 +122,11 @@ public class RemedioControllerServlet extends HttpServlet {
         // Lendo informação do FORMULÁRIO de Paciente
         String nome = request.getParameter("nome");
         String quantidade = request.getParameter("quantidade");
+        String codFilial = request.getParameter("codFilial");
         Boolean ativo = true;
 
         // Criar um objeto do PACIENTE
-        Remedio remedio = new Remedio(nome, quantidade, ativo);
+        Remedio remedio = new Remedio(nome, quantidade, codFilial, ativo);
 
         // Adicionar esse PACIENTE no banco de Dados
         remedioDbUtil.addRemedy(remedio);
@@ -176,9 +177,10 @@ public class RemedioControllerServlet extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("remedioId"));
         String nome = request.getParameter("nome");
         String quantidade = request.getParameter("quantidade");
+        String codFilial = request.getParameter("codFilial");
         Boolean ativo = true;
 
-        Remedio remedio = new Remedio(id, nome, quantidade, ativo);
+        Remedio remedio = new Remedio(id, nome, quantidade, codFilial, ativo);
 
         remedioDbUtil.updateRemedio(remedio);
 

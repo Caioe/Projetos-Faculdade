@@ -155,24 +155,26 @@
                                         <c:param name="consultaId" value="${consulta.idConsulta}" />
                                     </c:url>
 
-                                    <tr>
-                                        <th scope="row">${consulta.nomePaciente}</th>
-                                        <td scope="row">${consulta.motivo}</td>
-                                        <td scope="row">${consulta.nomeMedico}</td>
-                                        <td scope="row">${consulta.usuarioNome}</td>
-                                        <td scope="row"><fmt:formatDate value="${consulta.data}" type="both" pattern="dd/MM/yyyy" dateStyle="full"/></td>
-                                        <td scope="row">
-                                            <a href="${link}">Atualizar</a>
-                                            |
-                                            <a href="${deleteLink}" onclick="if (!(confirm('Você tem certeza que deseja excluir este funcionário?')))
-                                                        return false">Deletar</a>
-
-                                            <c:if test="${usuarioCargo == 'Medico'}">
+                                    <c:if test="${consulta.codFilial eq usuarioCodFilial}">
+                                        <tr>
+                                            <th scope="row">${consulta.nomePaciente}</th>
+                                            <td scope="row">${consulta.motivo}</td>
+                                            <td scope="row">${consulta.nomeMedico}</td>
+                                            <td scope="row">${consulta.usuarioNome}</td>
+                                            <td scope="row"><fmt:formatDate value="${consulta.data}" type="both" pattern="dd/MM/yyyy" dateStyle="full"/></td>
+                                            <td scope="row">
+                                                <a href="${link}">Atualizar</a>
                                                 |
-                                                <a href="${attendAppointment}">Atender</a>
-                                            </c:if>
-                                        </td>
-                                    </tr>    
+                                                <a href="${deleteLink}" onclick="if (!(confirm('Você tem certeza que deseja excluir este funcionário?')))
+                                                            return false">Deletar</a>
+
+                                                <c:if test="${usuarioCargo == 'Medico'}">
+                                                    |
+                                                    <a href="${attendAppointment}">Atender</a>
+                                                </c:if>
+                                            </td>
+                                        </tr>  
+                                    </c:if>
                                 </c:forEach>
                             </tbody>
                         </table>

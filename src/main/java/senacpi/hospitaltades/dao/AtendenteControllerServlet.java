@@ -128,10 +128,11 @@ public class AtendenteControllerServlet extends HttpServlet {
         String sobrenome = request.getParameter("sobrenome");
         String cpf = request.getParameter("cpf");
         String sexo = request.getParameter("sexo");
+        String codFilial = request.getParameter("codFilial");
         Boolean ativo = true;
 
         // Criar um objeto do PACIENTE
-        Atendente atendente = new Atendente(nome, sobrenome, cpf, sexo, ativo);
+        Atendente atendente = new Atendente(nome, sobrenome, cpf, sexo, codFilial, ativo);
 
         // Adicionar esse PACIENTE no banco de Dados
         atendenteDbUtil.addAttendant(atendente);
@@ -184,9 +185,10 @@ public class AtendenteControllerServlet extends HttpServlet {
         String sobrenome = request.getParameter("sobrenome");
         String cpf = request.getParameter("cpf");
         String sexo = request.getParameter("sexo");
+        String codFilial = request.getParameter("codFilial");
         Boolean ativo = true;
 
-        Atendente atendente = new Atendente(idAtendente, nome, sobrenome, cpf, sexo, ativo);
+        Atendente atendente = new Atendente(idAtendente, nome, sobrenome, cpf, sexo, codFilial, ativo);
 
         atendenteDbUtil.updateAtendente(atendente);
 

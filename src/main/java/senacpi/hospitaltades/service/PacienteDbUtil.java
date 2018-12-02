@@ -53,9 +53,10 @@ public class PacienteDbUtil {
                 String sexo = myRs.getString("sexo");
                 String contato = myRs.getString("contato");
                 String email = myRs.getString("email");
+                String codFilial = myRs.getString("codFilial");
                 boolean ativo = myRs.getBoolean("ativo");
 
-                Paciente paciente = new Paciente(id, nome, sobrenome, dataNasc, cpf, sexo, contato, email, ativo);
+                Paciente paciente = new Paciente(id, nome, sobrenome, dataNasc, cpf, sexo, contato, email, codFilial, ativo);
 
                 pacientes.add(paciente);
             }
@@ -78,8 +79,8 @@ public class PacienteDbUtil {
 
             // Criando um SQL para inserir no banco
             String sql = "insert into paciente"
-                    + "(nome, sobrenome, dataNasc, cpf, sexo, contato, email, ativo)"
-                    + "values (?, ?, ?, ?, ?, ?, ?, ?)";
+                    + "(nome, sobrenome, dataNasc, cpf, sexo, contato, email, codFilial, ativo)"
+                    + "values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
             myStmt = myConn.prepareStatement(sql);
 
@@ -91,7 +92,8 @@ public class PacienteDbUtil {
             myStmt.setString(5, paciente.getSexo());
             myStmt.setString(6, paciente.getContato());
             myStmt.setString(7, paciente.getEmail());
-            myStmt.setBoolean(8, paciente.isAtivo());
+            myStmt.setString(8, paciente.getCodFilial());
+            myStmt.setBoolean(9, paciente.isAtivo());
 
             // Executando o comando SQL
             myStmt.execute();
@@ -135,9 +137,10 @@ public class PacienteDbUtil {
                 String sexo = myRs.getString("sexo");
                 String contato = myRs.getString("contato");
                 String email = myRs.getString("email");
+                String codFilial = myRs.getString("codFilial");
                 boolean ativo = myRs.getBoolean("ativo");
 
-                paciente = new Paciente(pacienteId, nome, sobrenome, dataNasc, cpf, sexo, contato, email, ativo);
+                paciente = new Paciente(pacienteId, nome, sobrenome, dataNasc, cpf, sexo, contato, email, codFilial, ativo);
 
             } else {
                 throw new Exception("Não pode achar o ID do estudante: " + pacienteId);
@@ -158,7 +161,7 @@ public class PacienteDbUtil {
             myConn = dataSource.getConnection();
 
             String sql = "update paciente "
-                    + "set nome=?, sobrenome=?, dataNasc=?, cpf=?, sexo=?, contato=?, email=?, ativo=? "
+                    + "set nome=?, sobrenome=?, dataNasc=?, cpf=?, sexo=?, contato=?, email=?, codFilial=?, ativo=? "
                     + "where id=?";
 
             myStmt = myConn.prepareStatement(sql);
@@ -170,8 +173,9 @@ public class PacienteDbUtil {
             myStmt.setString(5, paciente.getSexo());
             myStmt.setString(6, paciente.getContato());
             myStmt.setString(7, paciente.getEmail());
-            myStmt.setBoolean(8, paciente.isAtivo());
-            myStmt.setInt(9, paciente.getId());
+            myStmt.setString(8, paciente.getCodFilial());
+            myStmt.setBoolean(9, paciente.isAtivo());
+            myStmt.setInt(10, paciente.getId());
 
             myStmt.execute();
 

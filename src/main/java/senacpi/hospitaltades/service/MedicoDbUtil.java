@@ -52,9 +52,10 @@ public class MedicoDbUtil {
                 String cpf = myRs.getString("cpf");
                 String sexo = myRs.getString("sexo");
                 String crm = myRs.getString("crm");
+                String codFilial = myRs.getString("codFilial");
                 boolean ativo = myRs.getBoolean("ativo");
 
-                Medico medico = new Medico(idMedico, nome, sobrenome, cpf, sexo, crm, ativo);
+                Medico medico = new Medico(idMedico, nome, sobrenome, cpf, sexo, crm, codFilial, ativo);
 
                 medicos.add(medico);
             }
@@ -77,8 +78,8 @@ public class MedicoDbUtil {
 
             // Criando um SQL para inserir no banco
             String sql = "insert into medico"
-                    + "(nome, sobrenome, cpf, sexo, crm, ativo)"
-                    + "values (?, ?, ?, ?, ?, ?)";
+                    + "(nome, sobrenome, cpf, sexo, crm, codFilial, ativo)"
+                    + "values (?, ?, ?, ?, ?, ?, ?)";
 
             myStmt = myConn.prepareStatement(sql);
 
@@ -88,7 +89,8 @@ public class MedicoDbUtil {
             myStmt.setString(3, medico.getCpf());
             myStmt.setString(4, medico.getSexo());
             myStmt.setString(5, medico.getCrm());
-            myStmt.setBoolean(6, medico.isAtivo());
+            myStmt.setString(6, medico.getCodFilial());
+            myStmt.setBoolean(7, medico.isAtivo());
 
             // Executando o comando SQL
             myStmt.execute();
@@ -130,9 +132,10 @@ public class MedicoDbUtil {
                 String cpf = myRs.getString("cpf");
                 String sexo = myRs.getString("sexo");
                 String crm = myRs.getString("crm");
+                String codFilial = myRs.getString("codFilial");
                 boolean ativo = myRs.getBoolean("ativo");
 
-                medico = new Medico(medicoId, nome, sobrenome, cpf, sexo, crm, ativo);
+                medico = new Medico(medicoId, nome, sobrenome, cpf, sexo, crm, codFilial, ativo);
 
             } else {
                 throw new Exception("Não pode achar o ID do médico: " + medicoId);
@@ -153,7 +156,7 @@ public class MedicoDbUtil {
             myConn = dataSource.getConnection();
 
             String sql = "update medico "
-                    + "set nome=?, sobrenome=?, cpf=?, sexo=?, crm=?, ativo=? "
+                    + "set nome=?, sobrenome=?, cpf=?, sexo=?, crm=?, codFilial=?, ativo=? "
                     + "where idMedico=?";
 
             myStmt = myConn.prepareStatement(sql);
@@ -164,7 +167,8 @@ public class MedicoDbUtil {
             myStmt.setString(4, medico.getSexo());
             myStmt.setString(5, medico.getCrm());
             myStmt.setBoolean(6, medico.isAtivo());
-            myStmt.setInt(7, medico.getIdMedico());
+            myStmt.setString(7, medico.getCodFilial());
+            myStmt.setInt(8, medico.getIdMedico());
 
             myStmt.execute();
 

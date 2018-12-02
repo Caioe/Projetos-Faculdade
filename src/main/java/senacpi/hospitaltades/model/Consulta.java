@@ -12,6 +12,7 @@ import java.util.Date;
  * @author Yury Cavalcante
  */
 public class Consulta {
+
     private int idConsulta;
     private Date data;
     private String motivo;
@@ -22,10 +23,11 @@ public class Consulta {
     private int idRemedio;
     private String nomeRemedio;
     private String usuarioNome;
+    private String codFilial;
     private boolean ativo;
     private String obsMedica;
 
-    public Consulta(int idConsulta, Date data, String motivo, int idPaciente, String nomePaciente, int idMedico, String nomeMedico, int idRemedio, String nomeRemedio, String usuarioNome, boolean ativo, String obsMedica) {
+    public Consulta(int idConsulta, Date data, String motivo, int idPaciente, String nomePaciente, int idMedico, String nomeMedico, int idRemedio, String nomeRemedio, String usuarioNome, String codFilial, boolean ativo, String obsMedica) {
         this.data = data;
         this.idConsulta = idConsulta;
         this.motivo = motivo;
@@ -36,11 +38,12 @@ public class Consulta {
         this.idRemedio = idRemedio;
         this.nomeRemedio = nomeRemedio;
         this.usuarioNome = usuarioNome;
+        this.codFilial = codFilial;
         this.ativo = ativo;
         this.obsMedica = obsMedica;
     }
 
-    public Consulta(Date data, String motivo, int idPaciente, String nomePaciente, int idMedico, String nomeMedico, int idRemedio, String nomeRemedio, String usuarioNome, boolean ativo, String obsMedica) {
+    public Consulta(Date data, String motivo, int idPaciente, String nomePaciente, int idMedico, String nomeMedico, int idRemedio, String nomeRemedio, String usuarioNome, String codFilial, boolean ativo, String obsMedica) {
         this.data = data;
         this.motivo = motivo;
         this.idPaciente = idPaciente;
@@ -50,11 +53,12 @@ public class Consulta {
         this.idRemedio = idRemedio;
         this.nomeRemedio = nomeRemedio;
         this.usuarioNome = usuarioNome;
+        this.codFilial = codFilial;
         this.ativo = ativo;
         this.obsMedica = obsMedica;
     }
 
-    public Consulta(int idConsulta, Date data, String motivo, int idPaciente, String nomePaciente, int idMedico, String nomeMedico, String usuarioNome, boolean ativo) {
+    public Consulta(int idConsulta, Date data, String motivo, int idPaciente, String nomePaciente, int idMedico, String nomeMedico, String usuarioNome, String codFilial, boolean ativo) {
         this.data = data;
         this.idConsulta = idConsulta;
         this.motivo = motivo;
@@ -63,10 +67,11 @@ public class Consulta {
         this.idMedico = idMedico;
         this.nomeMedico = nomeMedico;
         this.usuarioNome = usuarioNome;
+        this.codFilial = codFilial;
         this.ativo = ativo;
     }
 
-    public Consulta(Date data, String motivo, int idPaciente, String nomePaciente, int idMedico, String nomeMedico, String usuarioNome, boolean ativo) {
+    public Consulta(Date data, String motivo, int idPaciente, String nomePaciente, int idMedico, String nomeMedico, String usuarioNome, String codFilial, boolean ativo) {
         this.data = data;
         this.motivo = motivo;
         this.idPaciente = idPaciente;
@@ -74,10 +79,9 @@ public class Consulta {
         this.idMedico = idMedico;
         this.nomeMedico = nomeMedico;
         this.usuarioNome = usuarioNome;
+        this.codFilial = codFilial;
         this.ativo = ativo;
     }
-    
-    
 
     public int getIdConsulta() {
         return idConsulta;
@@ -86,11 +90,11 @@ public class Consulta {
     public void setIdConsulta(int idConsulta) {
         this.idConsulta = idConsulta;
     }
-    
+
     public Date getData() {
         return data;
     }
-    
+
     public void setData(Date data) {
         this.data = data;
     }
@@ -159,6 +163,14 @@ public class Consulta {
         this.usuarioNome = usuarioNome;
     }
 
+    public String getCodFilial() {
+        return codFilial;
+    }
+
+    public void setCodFilial(String codFilial) {
+        this.codFilial = codFilial;
+    }
+
     public boolean isAtivo() {
         return ativo;
     }
@@ -174,8 +186,5 @@ public class Consulta {
     public void setObsMedica(String obsMedica) {
         this.obsMedica = obsMedica;
     }
-    
-    
 
-    
 }

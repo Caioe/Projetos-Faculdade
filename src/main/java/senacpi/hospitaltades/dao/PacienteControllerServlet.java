@@ -130,10 +130,11 @@ public class PacienteControllerServlet extends HttpServlet {
         String sexo = request.getParameter("sexo");
         String contato = request.getParameter("contato");
         String email = request.getParameter("email");
+        String codFilial = request.getParameter("codFilial");
         Boolean ativo = true;
 
         // Criar um objeto do PACIENTE
-        Paciente paciente = new Paciente(nome, sobrenome, dataNasc, cpf, sexo, contato, email, ativo);
+        Paciente paciente = new Paciente(nome, sobrenome, dataNasc, cpf, sexo, contato, email, codFilial, ativo);
 
         // Adicionar esse PACIENTE no banco de Dados
         pacienteDbUtil.addPatient(paciente);
@@ -189,9 +190,10 @@ public class PacienteControllerServlet extends HttpServlet {
         String sexo = request.getParameter("sexo");
         String contato = request.getParameter("contato");
         String email = request.getParameter("email");
+        String codFilial = request.getParameter("codFilial");
         Boolean ativo = true;
 
-        Paciente paciente = new Paciente(id, nome, sobrenome, dataNasc, cpf, sexo, contato, email, ativo);
+        Paciente paciente = new Paciente(id, nome, sobrenome, dataNasc, cpf, sexo, contato, email, codFilial, ativo);
 
         pacienteDbUtil.updatePaciente(paciente);
 

@@ -141,17 +141,18 @@
                                         <c:param name="remedioId" value="${remedio.idRemedio}" />
                                     </c:url>
 
-
-                                    <tr>
-                                        <th scope="row">${remedio.nome}</th>
-                                        <td scope="row">${remedio.quantidade}</td>
-                                        <td scope="row">
-                                            <a href="${link}">Atualizar</a>
-                                            |
-                                            <a href="${deleteLink}" onclick="if (!(confirm('Você tem certeza que deseja excluir este remédio?')))
-                                                        return false">Deletar</a>
-                                        </td>
-                                    </tr>    
+                                    <c:if test="${remedio.codFilial eq usuarioCodFilial}">
+                                        <tr>
+                                            <th scope="row">${remedio.nome}</th>
+                                            <td scope="row">${remedio.quantidade}</td>
+                                            <td scope="row">
+                                                <a href="${link}">Atualizar</a>
+                                                |
+                                                <a href="${deleteLink}" onclick="if (!(confirm('Você tem certeza que deseja excluir este remédio?')))
+                                                            return false">Deletar</a>
+                                            </td>
+                                        </tr> 
+                                    </c:if>
                                 </c:forEach>
                             </tbody>
                         </table>

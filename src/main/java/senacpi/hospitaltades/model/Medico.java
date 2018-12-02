@@ -10,7 +10,7 @@ package senacpi.hospitaltades.model;
  * @author Yury Cavalcante
  */
 public class Medico {
-    
+
     private int idMedico;
     private String nome;
     private String sobrenome;
@@ -18,9 +18,10 @@ public class Medico {
     private String sexo;
     private String crm;
     private int idUsuario;
+    private String codFilial;
     private boolean ativo;
 
-    public Medico(int idMedico, String nome, String sobrenome, String cpf, String sexo, String crm, int idUsuario, boolean ativo) {
+    public Medico(int idMedico, String nome, String sobrenome, String cpf, String sexo, String crm, int idUsuario, String codFilial, boolean ativo) {
         this.idMedico = idMedico;
         this.nome = nome;
         this.sobrenome = sobrenome;
@@ -28,29 +29,30 @@ public class Medico {
         this.sexo = sexo;
         this.crm = crm;
         this.idUsuario = idUsuario;
+        this.codFilial = codFilial;
         this.ativo = ativo;
     }
 
-    public Medico(int idMedico, String nome, String sobrenome, String cpf, String sexo, String crm, boolean ativo) {
+    public Medico(int idMedico, String nome, String sobrenome, String cpf, String sexo, String crm, String codFilial, boolean ativo) {
         this.idMedico = idMedico;
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.cpf = cpf;
         this.sexo = sexo;
         this.crm = crm;
+        this.codFilial = codFilial;
         this.ativo = ativo;
     }
 
-    public Medico(String nome, String sobrenome, String cpf, String sexo, String crm, boolean ativo) {
+    public Medico(String nome, String sobrenome, String cpf, String sexo, String crm, String codFilial, boolean ativo) {
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.cpf = cpf;
         this.sexo = sexo;
         this.crm = crm;
+        this.codFilial = codFilial;
         this.ativo = ativo;
     }
-    
-    
 
     public int getIdMedico() {
         return idMedico;
@@ -83,7 +85,7 @@ public class Medico {
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
-    
+
     public String getSexo() {
         return sexo;
     }
@@ -108,6 +110,14 @@ public class Medico {
         this.idUsuario = idUsuario;
     }
 
+    public String getCodFilial() {
+        return codFilial;
+    }
+
+    public void setCodFilial(String codFilial) {
+        this.codFilial = codFilial;
+    }
+
     public boolean isAtivo() {
         return ativo;
     }
@@ -115,7 +125,5 @@ public class Medico {
     public void setAtivo(boolean ativo) {
         this.ativo = ativo;
     }
-    
-    
-    
+
 }

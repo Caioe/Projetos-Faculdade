@@ -137,13 +137,17 @@
                             </div>
 
                             <div class="form-row">
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-md-4">
                                     <label for="senha">Senha</label>
                                     <input type="password" class="form-control"  name="senha">
                                 </div>
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-md-4">
                                     <label for="senhaConfirmada">Confirmar Senha</label>
                                     <input type="password" class="form-control"  name="senhaConfirmada">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="codFilial">Código da Filial</label>
+                                    <input type="text" class="form-control"  name="codFilial" value="${usuarioCodFilial}">
                                 </div>
                             </div>
 

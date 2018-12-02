@@ -154,25 +154,27 @@
                                     </c:url>
 
 
-                                    <tr>
-                                        <th scope="row">${atendente.nome}</th>
-                                        <td scope="row">${atendente.sobrenome}</td>
-                                        <td scope="row">${atendente.cpf}</td>
-                                        <td scope="row">
-                                            <a href="${link}">Atualizar</a>
-                                            |
-                                            <a href="${deleteLink}" onclick="if (!(confirm('Você tem certeza que deseja excluir este funcionário?')))
-                                                        return false">Deletar</a>
-                                            <c:if test="${atendente.idUsuario ne 0 || null}">
+                                    <c:if test="${atendente.codFilial eq usuarioCodFilial}">
+                                        <tr>
+                                            <th scope="row">${atendente.nome}</th>
+                                            <td scope="row">${atendente.sobrenome}</td>
+                                            <td scope="row">${atendente.cpf}</td>
+                                            <td scope="row">
+                                                <a href="${link}">Atualizar</a>
                                                 |
-                                                <a href="${editLogin}">Editar Login</a>
-                                            </c:if>
-                                            <c:if test="${atendente.idUsuario eq 0 || null}">
-                                                |
-                                                <a href="${createLogin}">Criar Login</a>
-                                            </c:if>
-                                        </td>
-                                    </tr>    
+                                                <a href="${deleteLink}" onclick="if (!(confirm('Você tem certeza que deseja excluir este funcionário?')))
+                                                            return false">Deletar</a>
+                                                <c:if test="${atendente.idUsuario ne 0 || null}">
+                                                    |
+                                                    <a href="${editLogin}">Editar Login</a>
+                                                </c:if>
+                                                <c:if test="${atendente.idUsuario eq 0 || null}">
+                                                    |
+                                                    <a href="${createLogin}">Criar Login</a>
+                                                </c:if>
+                                            </td>
+                                        </tr>
+                                    </c:if>
                                 </c:forEach>
                             </tbody>
                         </table>

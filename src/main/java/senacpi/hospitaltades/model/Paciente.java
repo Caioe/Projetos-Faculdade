@@ -19,9 +19,10 @@ public class Paciente {
     private String sexo;
     private String contato;
     private String email;
+    private String codFilial;
     private boolean ativo;
 
-    public Paciente(String nome, String sobrenome, String dataNasc, String cpf, String sexo, String contato, String email, boolean ativo) {
+    public Paciente(String nome, String sobrenome, String dataNasc, String cpf, String sexo, String contato, String email, String codFilial, boolean ativo) {
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.dataNasc = dataNasc;
@@ -29,10 +30,11 @@ public class Paciente {
         this.sexo = sexo;
         this.contato = contato;
         this.email = email;
+        this.codFilial = codFilial;
         this.ativo = ativo;
     }
 
-    public Paciente(int id, String nome, String sobrenome, String dataNasc, String cpf, String sexo, String contato, String email, boolean ativo) {
+    public Paciente(int id, String nome, String sobrenome, String dataNasc, String cpf, String sexo, String contato, String email, String codFilial, boolean ativo) {
         this.id = id;
         this.nome = nome;
         this.sobrenome = sobrenome;
@@ -41,6 +43,7 @@ public class Paciente {
         this.sexo = sexo;
         this.contato = contato;
         this.email = email;
+        this.codFilial = codFilial;
         this.ativo = ativo;
     }
 
@@ -106,6 +109,14 @@ public class Paciente {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getCodFilial() {
+        return codFilial;
+    }
+
+    public void setCodFilial(String codFilial) {
+        this.codFilial = codFilial;
     }
 
     public boolean isAtivo() {

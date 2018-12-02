@@ -126,14 +126,18 @@
                             <input type="hidden" name="remedioId" value="${REMEDIO.idRemedio}" />
 
                             <div class="form-row">
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-md-4">
                                     <label for="nome">Nome</label>
                                     <input type="text" class="form-control" value="${REMEDIO.nome}" name="nome" placeholder="Nome" />
 
                                 </div>
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-md-4">
                                     <label for="quantidade">Sobrenome</label>
                                     <input type="number" class="form-control" value="${REMEDIO.quantidade}"name="quantidade" placeholder="Quantidade" />
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="codFilial">Código da Filial</label>
+                                    <input type="text" class="form-control"  name="codFilial" value="${usuarioCodFilial}">
                                 </div>
 
 

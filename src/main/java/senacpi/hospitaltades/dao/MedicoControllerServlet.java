@@ -16,7 +16,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 import senacpi.hospitaltades.model.Medico;
-import senacpi.hospitaltades.service.UsuarioDbUtil;
 
 /**
  *
@@ -131,10 +130,11 @@ public class MedicoControllerServlet extends HttpServlet {
         String cpf = request.getParameter("cpf");
         String sexo = request.getParameter("sexo");
         String crm = request.getParameter("crm");
+        String codFilial = request.getParameter("codFilial");
         Boolean ativo = true;
 
         // Criar um objeto do PACIENTE
-        Medico medico = new Medico(nome, sobrenome, cpf, sexo, crm, ativo);
+        Medico medico = new Medico(nome, sobrenome, cpf, sexo, crm, codFilial, ativo);
 
         // Adicionar esse PACIENTE no banco de Dados
         medicoDbUtil.addMedic(medico);
@@ -188,9 +188,10 @@ public class MedicoControllerServlet extends HttpServlet {
         String cpf = request.getParameter("cpf");
         String sexo = request.getParameter("sexo");
         String crm = request.getParameter("crm");
+        String codFilial = request.getParameter("codFilial");
         Boolean ativo = true;
 
-        Medico medico = new Medico(idMedico, nome, sobrenome, cpf, sexo, crm, ativo);
+        Medico medico = new Medico(idMedico, nome, sobrenome, cpf, sexo, crm, codFilial, ativo);
 
         medicoDbUtil.updateMedico(medico);
 

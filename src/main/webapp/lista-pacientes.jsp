@@ -144,18 +144,20 @@
                                     </c:url>
 
 
-                                    <tr>
-                                        <th scope="row">${paciente.nome}</th>
-                                        <td scope="row">${paciente.sobrenome}</td>
-                                        <td scope="row">${paciente.cpf}</td>
-                                        <td scope="row">${paciente.email}</td>
-                                        <td scope="row">
-                                            <a href="${link}">Atualizar</a>
-                                            |
-                                            <a href="${deleteLink}" onclick="if (!(confirm('Você tem certeza que deseja excluir este paciente?')))
-                                                        return false">Deletar</a>
-                                        </td>
-                                    </tr>    
+                                    <c:if test="${paciente.codFilial eq usuarioCodFilial}">
+                                        <tr>
+                                            <th scope="row">${paciente.nome}</th>
+                                            <td scope="row">${paciente.sobrenome}</td>
+                                            <td scope="row">${paciente.cpf}</td>
+                                            <td scope="row">${paciente.email}</td>
+                                            <td scope="row">
+                                                <a href="${link}">Atualizar</a>
+                                                |
+                                                <a href="${deleteLink}" onclick="if (!(confirm('Você tem certeza que deseja excluir este paciente?')))
+                                                            return false">Deletar</a>
+                                            </td>
+                                        </tr>    
+                                    </c:if>
                                 </c:forEach>
                             </tbody>
                         </table>

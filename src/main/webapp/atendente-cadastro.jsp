@@ -133,16 +133,20 @@
                             </div>
 
                             <div class="form-row">
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-md-4">
                                     <label for="cpf">CPF</label>
                                     <input type="text" class="form-control"  name="cpf">
                                 </div>
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-md-4">
                                     <label for="sexo">Sexo</label>
                                     <select class="form-control-select" name="sexo">
                                         <option value="Masculino">Masculino</option>
                                         <option value="Feminino">Feminino</option>
                                     </select>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="codFilial">Código da Filial</label>
+                                    <input type="text" class="form-control"  name="codFilial" value="${usuarioCodFilial}">
                                 </div>
                             </div>
 

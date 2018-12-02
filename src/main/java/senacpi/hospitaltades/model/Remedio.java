@@ -10,22 +10,25 @@ package senacpi.hospitaltades.model;
  * @author Yury Cavalcante
  */
 public class Remedio {
-    
+
     private int idRemedio;
     private String nome;
     private String quantidade;
+    private String codFilial;
     private boolean ativo;
 
-    public Remedio(int idRemedio, String nome, String quantidade, boolean ativo) {
+    public Remedio(int idRemedio, String nome, String quantidade, String codFilial, boolean ativo) {
         this.idRemedio = idRemedio;
         this.nome = nome;
         this.quantidade = quantidade;
+        this.codFilial = codFilial;
         this.ativo = ativo;
     }
 
-    public Remedio(String nome, String quantidade, boolean ativo) {
+    public Remedio(String nome, String quantidade, String codFilial, boolean ativo) {
         this.nome = nome;
         this.quantidade = quantidade;
+        this.codFilial = codFilial;
         this.ativo = ativo;
     }
 
@@ -53,6 +56,14 @@ public class Remedio {
         this.quantidade = quantidade;
     }
 
+    public String getCodFilial() {
+        return codFilial;
+    }
+
+    public void setCodFilial(String codFilial) {
+        this.codFilial = codFilial;
+    }
+
     public boolean isAtivo() {
         return ativo;
     }
@@ -61,5 +72,4 @@ public class Remedio {
         this.ativo = ativo;
     }
 
-    
 }

@@ -134,16 +134,17 @@
                                         <c:param name="usuarioId" value="${usuario.idUsuario}" />
                                     </c:url>
 
-
-                                    <tr>
-                                        <th scope="row">${usuario.login}</th>
-                                        <td scope="row">${usuario.nome}</td>
-                                        <td scope="row">${usuario.cargo}</td>
-                                        <td scope="row">
-                                            <a href="${deleteLink}" onclick="if (!(confirm('Você tem certeza que deseja excluir este funcionário?')))
-                                                        return false">Deletar</a>
-                                        </td>
-                                    </tr>    
+                                    <c:if test="${usuario.codFilial eq usuarioCodFilial}">
+                                        <tr>
+                                            <th scope="row">${usuario.login}</th>
+                                            <td scope="row">${usuario.nome}</td>
+                                            <td scope="row">${usuario.cargo}</td>
+                                            <td scope="row">
+                                                <a href="${deleteLink}" onclick="if (!(confirm('Você tem certeza que deseja excluir este funcionário?')))
+                                                            return false">Deletar</a>
+                                            </td>
+                                        </tr>    
+                                    </c:if>
                                 </c:forEach>
                             </tbody>
                         </table>
