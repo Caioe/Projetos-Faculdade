@@ -17,17 +17,17 @@ public class Medico {
     private String cpf;
     private String sexo;
     private String crm;
-    private boolean temLogin;
+    private int idUsuario;
     private boolean ativo;
 
-    public Medico(int idMedico, String nome, String sobrenome, String cpf, String sexo, String crm, boolean temLogin, boolean ativo) {
+    public Medico(int idMedico, String nome, String sobrenome, String cpf, String sexo, String crm, int idUsuario, boolean ativo) {
         this.idMedico = idMedico;
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.cpf = cpf;
         this.sexo = sexo;
         this.crm = crm;
-        this.temLogin = temLogin;
+        this.idUsuario = idUsuario;
         this.ativo = ativo;
     }
 
@@ -100,12 +100,12 @@ public class Medico {
         this.crm = crm;
     }
 
-    public boolean isTemLogin() {
-        return temLogin;
+    public int getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setTemLogin(boolean temLogin) {
-        this.temLogin = temLogin;
+    public void setTemLogin(int idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
     public boolean isAtivo() {

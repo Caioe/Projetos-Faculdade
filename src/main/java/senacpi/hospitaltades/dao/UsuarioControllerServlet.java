@@ -145,7 +145,7 @@ public class UsuarioControllerServlet extends HttpServlet {
 
         if ("POST".equalsIgnoreCase(request.getMethod())) {
 
-            if (request.getParameter("login") != null) {
+            if (request.getParameter("login") != null || request.getParameter("senha") != null) {
 
                 if (request.getParameter("login").equals("Login")) {
 
@@ -166,21 +166,15 @@ public class UsuarioControllerServlet extends HttpServlet {
                             RequestDispatcher dispatcher = request.getRequestDispatcher("/home.jsp");
 
                             dispatcher.forward(request, response);
-                        } else {
-                            response.setContentType("text/html");
-
-                            PrintWriter out = response.getWriter();
-
-                            out.println("<script>");
-                            out.println("var errorMessage = document.getElementById('loginErrado');");
-                            out.println("errorMessage.innerHTML = 'Login ou senha incorretos :( <br/> Tente novamente, por favor.';");
-                            out.println("</script>");
                         }
-                    }
+                    } else {
+                        RequestDispatcher dispatcher = request.getRequestDispatcher("/loginErrado.jsp");
 
+                        dispatcher.forward(request, response);
+                    }
                 }
 
-            }
+            } 
 
         }
     }
@@ -202,11 +196,10 @@ public class UsuarioControllerServlet extends HttpServlet {
         String senha = request.getParameter("senha");
         String nome = request.getParameter("nome");
         String cargo = request.getParameter("cargo");
-        boolean temLogin = true;
         Boolean ativo = true;
 
         // Criar um objeto do PACIENTE
-        Usuario usuario = new Usuario(login, senha, nome, cargo, temLogin, ativo);
+        Usuario usuario = new Usuario(login, senha, nome, cargo, ativo, ativo);
 
         // Adicionar esse PACIENTE no banco de Dados
         usuarioDbUtil.addUser(usuario);

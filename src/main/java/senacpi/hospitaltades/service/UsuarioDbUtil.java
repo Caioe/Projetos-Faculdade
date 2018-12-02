@@ -28,6 +28,7 @@ public class UsuarioDbUtil {
     public Usuario handleLogin(String login, String senha) throws Exception {
 
         Usuario usuario = null;
+        String errorMessage = null;
 
         Connection myConn = null;
         PreparedStatement myStmt = null;
@@ -55,8 +56,6 @@ public class UsuarioDbUtil {
 
                 usuario = new Usuario(usuarioId, login, senha, nome, cargo, ativo);
 
-            } else {
-                throw new Exception("Não pode achar o login nem senha " + login + senha);
             }
             return usuario;
         } finally {
@@ -190,13 +189,14 @@ public class UsuarioDbUtil {
                 myConn = dataSource.getConnection();
 
                 String sql = "update medico "
-                        + "set temLogin=true "
+                        + "set idUsuario=? "
                         + "where idMedico=?";
 
                 myStmt = myConn.prepareStatement(sql);
 
                 myStmt.setInt(1, funcId);
-                
+                myStmt.setInt(2, funcId);
+
                 myStmt.execute();
 
             } finally {
@@ -205,20 +205,21 @@ public class UsuarioDbUtil {
 
             }
         }
-        
+
         if (cargo.equals("Atendente")) {
 
             try {
                 myConn = dataSource.getConnection();
 
                 String sql = "update atendente "
-                        + "set temLogin=true "
+                        + "set idUsuario=? "
                         + "where idAtendente=?";
 
                 myStmt = myConn.prepareStatement(sql);
 
                 myStmt.setInt(1, funcId);
-                
+                myStmt.setInt(2, funcId);
+
                 myStmt.execute();
 
             } finally {

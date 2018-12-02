@@ -16,7 +16,7 @@ public class Atendente {
     private String sobrenome;
     private String cpf;
     private String sexo;
-    private boolean temLogin;
+    private int idUsuario;
     private boolean ativo;
 
     public Atendente(int idAtendente, String nome, String sobrenome, String cpf, String sexo, boolean ativo) {
@@ -28,13 +28,13 @@ public class Atendente {
         this.ativo = ativo;
     }
 
-    public Atendente(int idAtendente, String nome, String sobrenome, String cpf, String sexo, boolean temLogin, boolean ativo) {
+    public Atendente(int idAtendente, String nome, String sobrenome, String cpf, String sexo, int idUsuario, boolean ativo) {
         this.idAtendente = idAtendente;
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.cpf = cpf;
         this.sexo = sexo;
-        this.temLogin = temLogin;
+        this.idUsuario = idUsuario;
         this.ativo = ativo;
     }
 
@@ -86,12 +86,12 @@ public class Atendente {
         this.sexo = sexo;
     }
 
-    public boolean isTemLogin() {
-        return temLogin;
+    public int getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setTemLogin(boolean temLogin) {
-        this.temLogin = temLogin;
+    public void setTemLogin(int idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
     public boolean isAtivo() {

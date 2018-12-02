@@ -163,15 +163,14 @@
                                             |
                                             <a href="${deleteLink}" onclick="if (!(confirm('Você tem certeza que deseja excluir este funcionário?')))
                                                         return false">Deletar</a>
-                                            |
-                                            <c:choose>
-                                                <c:when test="${atendente.temLogin eq false}">
-                                                    <a href="${createLogin}">Criar Login</a>
-                                                </c:when>    
-                                                <c:otherwise>
-                                                    <a href="${editLogin}">Editar Login</a>
-                                                </c:otherwise>
-                                            </c:choose>
+                                            <c:if test="${atendente.idUsuario ne 0 || null}">
+                                                |
+                                                <a href="${editLogin}">Editar Login</a>
+                                            </c:if>
+                                            <c:if test="${atendente.idUsuario eq 0 || null}">
+                                                |
+                                                <a href="${createLogin}">Criar Login</a>
+                                            </c:if>
                                         </td>
                                     </tr>    
                                 </c:forEach>
