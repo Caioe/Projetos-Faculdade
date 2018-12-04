@@ -7,6 +7,8 @@ C:\Users\Yury Cavalcante\Documents\NetBeansProjects\hospitaltades\src\main\java\
 C:\Users\Yury Cavalcante\Documents\NetBeansProjects\hospitaltades\src\main\java\senacpi\hospitaltades\model\Remedio.java
 C:\Users\Yury Cavalcante\Documents\NetBeansProjects\hospitaltades\src\main\java\senacpi\hospitaltades\dao\UsuarioControllerServlet.java
 C:\Users\Yury Cavalcante\Documents\NetBeansProjects\hospitaltades\src\main\java\senacpi\hospitaltades\service\PacienteDbUtil.java
+C:\Users\Yury Cavalcante\Documents\NetBeansProjects\hospitaltades\src\main\java\senacpi\hospitaltades\dao\RelatorioControllerServlet.java
+C:\Users\Yury Cavalcante\Documents\NetBeansProjects\hospitaltades\src\main\java\senacpi\hospitaltades\model\Relatorio.java
 C:\Users\Yury Cavalcante\Documents\NetBeansProjects\hospitaltades\src\main\java\senacpi\hospitaltades\service\UsuarioDbUtil.java
 C:\Users\Yury Cavalcante\Documents\NetBeansProjects\hospitaltades\src\main\java\senacpi\hospitaltades\service\AtendenteDbUtil.java
 C:\Users\Yury Cavalcante\Documents\NetBeansProjects\hospitaltades\src\main\java\senacpi\hospitaltades\dao\ConsultaControllerServlet.java
@@ -14,6 +16,7 @@ C:\Users\Yury Cavalcante\Documents\NetBeansProjects\hospitaltades\src\main\java\
 C:\Users\Yury Cavalcante\Documents\NetBeansProjects\hospitaltades\src\main\java\senacpi\hospitaltades\utils\ConexaoBanco.java
 C:\Users\Yury Cavalcante\Documents\NetBeansProjects\hospitaltades\src\main\java\senacpi\hospitaltades\dao\AtendenteControllerServlet.java
 C:\Users\Yury Cavalcante\Documents\NetBeansProjects\hospitaltades\src\main\java\senacpi\hospitaltades\service\ConsultaDbUtil.java
+C:\Users\Yury Cavalcante\Documents\NetBeansProjects\hospitaltades\src\main\java\senacpi\hospitaltades\service\RelatorioDTO.java
 C:\Users\Yury Cavalcante\Documents\NetBeansProjects\hospitaltades\src\main\java\senacpi\hospitaltades\dao\RemedioControllerServlet.java
 C:\Users\Yury Cavalcante\Documents\NetBeansProjects\hospitaltades\src\main\java\senacpi\hospitaltades\model\Medico.java
 C:\Users\Yury Cavalcante\Documents\NetBeansProjects\hospitaltades\src\main\java\senacpi\hospitaltades\model\Paciente.java

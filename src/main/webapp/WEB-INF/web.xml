@@ -31,6 +31,10 @@
         <servlet-name>ConsultaControllerServlet</servlet-name>
         <servlet-class>senacpi.hospitaltades.dao.ConsultaControllerServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RelatorioControllerServlet</servlet-name>
+        <servlet-class>senacpi.hospitaltades.dao.RelatorioControllerServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>PacienteControllerServlet</servlet-name>
         <url-pattern>/PacienteControllerServlet</url-pattern>
@@ -54,6 +58,10 @@
     <servlet-mapping>
         <servlet-name>ConsultaControllerServlet</servlet-name>
         <url-pattern>/ConsultaControllerServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RelatorioControllerServlet</servlet-name>
+        <url-pattern>/RelatorioControllerServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

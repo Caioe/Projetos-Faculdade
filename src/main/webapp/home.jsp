@@ -55,6 +55,10 @@
                     <c:param name="command" value="CREATE APPOINTMENT" />
                 </c:url>
 
+                <c:url var="reportsLink" value="RelatorioControllerServlet">
+                    <c:param name="command" value="REPORT" />
+                </c:url>
+
                 <c:url var="homeLink" value="home.jsp" />
 
 
@@ -102,7 +106,7 @@
 
                     <c:if test="${usuarioCargo == 'Admin'}">
                         <div class="menu-item"><i class="fas fa-file-alt" style="padding-right: 6px; color: #006EA2; font-size: 1.3rem;"></i>
-                            Relatórios
+                            <a href="${reportsLink}" style="text-decoration: none; color: inherit;">Relatórios</a>
                         </div>
                     </c:if>
 
