@@ -12,7 +12,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Remédios</title>
 
-        <link type="text/css" rel="stylesheet" href="client/css/lista-pacientes.css">
+        <link type="text/css" rel="stylesheet" href="client/css/paciente-cadastro.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
         <link href="https://fonts.googleapis.com/css?family=Kodchasan:400,600" rel="stylesheet">
 

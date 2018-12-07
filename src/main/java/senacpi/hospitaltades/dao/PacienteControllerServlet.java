@@ -14,6 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 import senacpi.hospitaltades.model.Paciente;
 
@@ -146,9 +147,11 @@ public class PacienteControllerServlet extends HttpServlet {
     private void listarPacientes(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
 
-        // Buscando pacientes usando o pacienteDbUtil
-        List<Paciente> pacientes = pacienteDbUtil.getPacientes();
+        HttpSession session = request.getSession();
+        String usuarioCodFilial = (String) session.getAttribute("usuarioCodFilial");
 
+        List<Paciente> pacientes = pacienteDbUtil.getPacientes(usuarioCodFilial);
+        // Buscando pacientes usando o pacienteDbUtil
         // Settando o atributo PACIENTES com o valor que buscamos
         request.setAttribute("PACIENTES", pacientes);
 

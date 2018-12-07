@@ -76,26 +76,6 @@
                     </execution>
                 </executions>
             </plugin>
-            <!--*************************************************-->
-            <!-- Deploy to Tomcat in App Service Linux           -->
-            <!--*************************************************-->
-
-            <plugin>
-                <groupId>com.microsoft.azure</groupId>
-                <artifactId>azure-webapp-maven-plugin</artifactId>
-                <version>1.4.0</version>
-                <configuration>
-
-                    <!-- Web App information -->
-                    <resourceGroup>hospitaltades</resourceGroup>
-                    <appName>hospitaltades</appName>
-                    <region>Central US</region>
-
-                    <!-- Java Runtime Stack for Web App on Linux-->
-                    <linuxRuntime>tomcat 8.5-jre8</linuxRuntime>
-
-                </configuration>
-            </plugin>
 
 
         </plugins>

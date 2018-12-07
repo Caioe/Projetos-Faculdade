@@ -40,8 +40,8 @@ public class RelatorioDTO {
 
             String queryRelatorio = "SELECT concat(p.nome, ' ', p.sobrenome) as nome, "
                     + "c.idConsulta as idConsulta, c.data as dataConsulta, "
-                    + "r.nome as nomeRemedio, r.quantidade as qtdRemedio, r.idRemedio as idRemedio, "
-                    + "from consulta c "
+                    + "r.nome as nomeRemedio, r.quantidade as qtdRemedio, r.idRemedio as idRemedio "
+                    + "from consultas c "
                     + "INNER JOIN remedio r on r.idRemedio = c.idRemedio "
                     + "INNER JOIN paciente p on p.id = c.idPaciente "
                     + "WHERE c.data BETWEEN ? AND ? "

@@ -117,13 +117,14 @@ public class ConsultaControllerServlet extends HttpServlet {
 
         HttpSession session = request.getSession();
         String usuarioCargo = (String) session.getAttribute("usuarioCargo");
+        String usuarioCodFilial = (String) session.getAttribute("usuarioCodFilial");
 
         try {
-            List<Paciente> pacientes = pacienteDbUtil.getPacientes();
+            List<Paciente> pacientes = pacienteDbUtil.getPacientes(usuarioCodFilial);
 
             request.setAttribute("PACIENTES", pacientes);
 
-            List<Medico> medicos = medicoDbUtil.getMedicos();
+            List<Medico> medicos = medicoDbUtil.getMedicos(usuarioCodFilial);
 
             request.setAttribute("MEDICOS", medicos);
 
@@ -250,7 +251,10 @@ public class ConsultaControllerServlet extends HttpServlet {
     private void listarConsultas(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
 
-        List<Paciente> pacientes = pacienteDbUtil.getPacientes();
+        HttpSession session = request.getSession();
+        String usuarioCodFilial = (String) session.getAttribute("usuarioCodFilial");
+
+        List<Paciente> pacientes = pacienteDbUtil.getPacientes(usuarioCodFilial);
 
         request.setAttribute("PACIENTES", pacientes);
 
@@ -289,6 +293,8 @@ public class ConsultaControllerServlet extends HttpServlet {
     private void carregarConsultaRealizar(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
 
+        HttpSession session = request.getSession();
+        String usuarioCodFilial = (String) session.getAttribute("usuarioCodFilial");
         // Ler o ID do paciente
         String theConsultaId = request.getParameter("consultaId");
 
@@ -298,7 +304,7 @@ public class ConsultaControllerServlet extends HttpServlet {
         // Colocar o paciente no atributo request
         request.setAttribute("CONSULTA", consulta);
 
-        List<Remedio> remedios = remedioDbUtil.getRemedios();
+        List<Remedio> remedios = remedioDbUtil.getRemedios(usuarioCodFilial);
 
         request.setAttribute("REMEDIOS", remedios);
 
@@ -343,7 +349,7 @@ public class ConsultaControllerServlet extends HttpServlet {
         String usuarioNome = request.getParameter("usuarioNome");
         String codFilial = request.getParameter("codFilial");
         Boolean ativo = true;
-        
+
         int consultaId = Integer.parseInt(request.getParameter("consultaId"));
 
         // Criar um objeto do PACIENTE

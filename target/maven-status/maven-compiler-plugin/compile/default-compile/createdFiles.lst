@@ -1,5 +1,6 @@
 senacpi\hospitaltades\service\AtendenteDbUtil.class
 senacpi\hospitaltades\dao\ConsultaControllerServlet.class
+senacpi\hospitaltades\service\RelatorioDTO.class
 senacpi\hospitaltades\utils\ConexaoBanco.class
 senacpi\hospitaltades\model\Consulta.class
 senacpi\hospitaltades\service\PacienteDbUtil.class
@@ -7,12 +8,14 @@ senacpi\hospitaltades\dao\AtendenteControllerServlet.class
 senacpi\hospitaltades\service\RemedioDbUtil.class
 senacpi\hospitaltades\dao\MedicoControllerServlet.class
 senacpi\hospitaltades\dao\RemedioControllerServlet.class
+senacpi\hospitaltades\model\Relatorio.class
 senacpi\hospitaltades\service\ConsultaDbUtil.class
 senacpi\hospitaltades\model\Atendente.class
 senacpi\hospitaltades\dao\PacienteControllerServlet.class
 senacpi\hospitaltades\dao\UsuarioControllerServlet.class
 senacpi\hospitaltades\model\Medico.class
 senacpi\hospitaltades\service\UsuarioDbUtil.class
+senacpi\hospitaltades\dao\RelatorioControllerServlet.class
 senacpi\hospitaltades\model\Remedio.class
 senacpi\hospitaltades\service\MedicoDbUtil.class
 senacpi\hospitaltades\model\Paciente.class

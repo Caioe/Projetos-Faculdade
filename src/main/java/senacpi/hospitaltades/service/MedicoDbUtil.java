@@ -26,7 +26,7 @@ public class MedicoDbUtil {
         dataSource = theDataSource;
     }
 
-    public List<Medico> getMedicos() throws Exception {
+    public List<Medico> getMedicos(String theCodFilial) throws Exception {
 
         List<Medico> medicos = new ArrayList<>();
 
@@ -38,7 +38,7 @@ public class MedicoDbUtil {
 
             myConn = dataSource.getConnection();
 
-            String sql = "select * from medico where ativo is true";
+            String sql = "select * from medico where ativo is true and codFilial='" + theCodFilial + "'";
 
             myStmt = myConn.createStatement();
 
